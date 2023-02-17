@@ -1,0 +1,69 @@
+[
+    {
+        "invoice_no": "25000351",
+        "customer": "Valentine Morin",
+        "img": "avatar-1.jpg",
+        "email": "euismod.enim@outlook.net",
+        "date": "2022-01-02",
+        "invoice_amount": "875",
+        "status": "Paid",
+        "billing_address": {
+            "full_name": "Valentine Morin",
+            "address": "5114 Adipiscing St. Puno United States 46782",
+            "phone": "(926) 817-7835",
+            "tax": "123456789"
+        },
+        "shipping_address": {
+            "full_name": "Quamar Payne",
+            "address": "534-1477 Non, Av. Bury St. Edmunds France 10846",
+            "phone": "(926) 817-7835",
+            "tax": "123456789"
+        },
+        "prducts": [
+            {
+                "product_name": "Sweatshirt for Men (Pink)",
+                "product_details": "Graphic Print Men & Women Sweatshirt",
+                "rates": "119.99",
+                "quantity": "2",
+                "amount": "399.98"
+            },
+            {
+                "product_name": "Noise NoiseFit Endure Smart Watch",
+                "product_details": "32.5mm (1.28 Inch) TFT Color Touch Display",
+                "rates": "94.99",
+                "quantity": "1",
+                "amount": "94.99"
+            },
+            {
+                "product_name": "350 ml Glass Grocery Container",
+                "product_details": "Glass Grocery Container (Pack of 3, White)",
+                "rates": "24.99",
+                "quantity": "1",
+                "amount": "24.99"
+            }
+        ],
+        "payment_details": {
+            "payment_method": "VISA",
+            "card_holder_name": "Reese Jacobs",
+            "card_number": "4024007179348742",
+            "total_amount": "415.96"
+        },
+        "company_details": {
+            "legal_registration_no": "987654",
+            "email": "velzon@themesbrand.com",
+            "website": "www.themesbrand.com",
+            "contact_no": "0123456789",
+            "address": "California, United States",
+            "zip_code": "90201"
+        },
+        "order_summary": {
+            "sub_total": "359.96",
+            "estimated_tex": "44.99",
+            "discount": "53.99",
+            "shipping_charge": "65.00",
+            "total_amount": "415.96"
+        },
+        "notes": "All accounts are to be paid within 7 days from receipt of invoice. To be paid by cheque or credit card or direct payment online. If account is not paid within 7 days the credits details supplied as confirmation of work undertaken will be charged the agreed quoted fee noted above."
+    }
+    
+]
