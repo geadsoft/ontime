@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TdRolPagoController extends Controller
+class TdPrestamosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,17 @@ class TdRolPagoController extends Controller
      */
     public function index()
     {
-        return view('rolpago');
+        return view('prestamos');
+    }
+
+    public function addprestamo()
+    {
+        return view('prestamos',['id' => 0]);
+    }
+
+    public function editprestamo($id)
+    {
+        return view('prestamos',['id' => $id]);
     }
 
     /**

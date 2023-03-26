@@ -17,4 +17,9 @@ class TdRubrosrolBases extends Model
         'constante',
         'usuario',
     ];
+
+    public function baserubrorol(){
+        return $this->belongsTo('App\Models\TmRubrosrol');
+    }
+
 }

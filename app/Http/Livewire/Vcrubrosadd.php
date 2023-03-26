@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 use App\Models\TmRubrosrol;
 use App\Models\TmVariables;
 use App\Models\TdRubrosrolBases;
+use Illuminate\Support\Facades\DB;
 
 
 class Vcrubrosadd extends Component
@@ -15,7 +16,7 @@ class Vcrubrosadd extends Component
     use WithPagination;
 
     public $AddNew = false;
-    public $selectId;
+    public $selectId, $selectValue, $rubrobaseId;
     public $record;
     public $baseRubros = [];
     public $rubros = [
@@ -23,7 +24,7 @@ class Vcrubrosadd extends Component
         'rubrorol_id' => 0,
         'descripcion' => "",
         'baserubrorol_id' => 0,
-        'importe' => 0,
+        'importe' => 1.00,
         'constante' => 0,
     ];
 
@@ -33,6 +34,8 @@ class Vcrubrosadd extends Component
             $this->selectId = $rubro_id;
             $this->loadData(); 
             $this->AddNew = true;  
+        } else {
+            $this->add();
         }
 
     }
@@ -40,10 +43,17 @@ class Vcrubrosadd extends Component
     public function render()
     {
         $tblvariables = TmVariables::all();
-        $tblrubros    = TmRubrosrol::all();
-                
+      
         if ($this->selectId==0){
-            $this->add();
+
+            $tblrubros    = TmRubrosrol::all();
+            
+        } else {
+
+            $tblrubros    = DB::Select('select rr.* from tm_rubrosrols rr
+            left join td_rubrosrol_bases rb on rb.baserubrorol_id = rr.id and rb.rubrorol_id = '.$this->selectId.'
+            where rb.id is null');
+            
         }
         
         return view('livewire.vcrubrosadd',[
@@ -63,7 +73,8 @@ class Vcrubrosadd extends Component
 
         $this->record   = TmRubrosrol::find($this->selectId)->toArray();
         $tblbases       = TdRubrosrolBases::query()
-        ->select('id','rubrorol_id','baserubrorol_id','importe','constante')
+        ->join("tm_rubrosrols as r","r.id","=","td_rubrosrol_bases.baserubrorol_id")
+        ->select('td_rubrosrol_bases.id','rubrorol_id','baserubrorol_id','td_rubrosrol_bases.importe','td_rubrosrol_bases.constante','descripcion')
         ->where('rubrorol_id',$this->selectId)
         ->get()->toArray();
 
@@ -102,7 +113,7 @@ class Vcrubrosadd extends Component
             'record.registro' => 'required',
         ]);
 
-        TmRubrosrol::Create([
+        $TmRubroRol = TmRubrosrol::Create([
             'descripcion' => $this -> record['descripcion'],
             'etiqueta' => $this -> record['etiqueta'],
             'tipo' => $this -> record['tipo'],
@@ -118,6 +129,18 @@ class Vcrubrosadd extends Component
             'usuario' => auth()->user()->name,
             'estado' => $this -> record['estado'],
         ]);
+
+        foreach ($this->baseRubros as $data){
+
+            TdRubrosrolBases::Create([
+                'rubrorol_id'     =>  $TmRubroRol->id,
+                'baserubrorol_id' => $data['baserubrorol_id'],
+                'importe'         => $data['importe'],
+                'constante'       => $data['constante'],
+                'usuario'         => auth()->user()->name,
+            ]);
+
+        }
 
         $this->dispatchBrowserEvent('msg-grabar'); 
         return redirect()->to('/form/rubros');
@@ -168,9 +191,29 @@ class Vcrubrosadd extends Component
 
         }
 
-        $this->dispatchBrowserEvent('msg-grabar'); 
+        $this->dispatchBrowserEvent('msg-actualizar'); 
         return redirect()->to('/form/rubros');
+        
 
+    }
+
+    public function delete($id){
+
+        $record = TdRubrosrolBases::find($id);
+        
+        $this->rubrobaseId = $id;
+        $this->selectValue = $record->baserubrorol['descripcion'];
+
+        $this->dispatchBrowserEvent('show-delete');
+    }
+
+    public function deleteData(){
+
+        TdRubrosrolBases::find($this->rubrobaseId)->delete();
+        
+        $this->dispatchBrowserEvent('hide-delete');
+        return redirect()->to('/form/rubros-edit/'.$this->selectId);
+        
     }
 
     public function newRecno(){
@@ -185,6 +228,13 @@ class Vcrubrosadd extends Component
     }
 
     public function addRubro(){
+
+        if($this->rubros['baserubrorol_id']==0){
+           return;
+        }
+
+        $rubro = TmRubrosrol::find($this->rubros['baserubrorol_id']);
+        $this->rubros['descripcion']=$rubro['descripcion'];
 
         array_push($this->baseRubros,$this->rubros);
         $this->newRecno();

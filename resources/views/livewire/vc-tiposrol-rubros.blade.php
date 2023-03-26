@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-xl-3 col-lg-4">
+        <!--<div class="col-xl-3 col-lg-4">
             <div class="card">
                 <div class="card-header ">
                     
@@ -32,11 +32,11 @@
             </div>
             
                 
-            <!-- end card -->
-        </div>
+           
+        </div>-->
         <!-- end col -->
 
-        <div class="col-xl-9 col-lg-8">
+        <div class="col-xl-12 col-lg-12">
             <div>
                 <div class="card">
                     
@@ -46,18 +46,31 @@
                         <div class="table-responsive table-card mb-1">
                             <div class="file-manager-content w-100 p-3 py-0">
                                 <div class="mx-n3 pt-4 px-4 file-manager-content-scroll" data-simplebar>
-                            
-                            
                                     <div class="d-flex align-items-center mb-3">
-                                        <h5 class="flex-grow-1 fs-16 mb-0" id="filetype-title">{{$nomtiporol}}</h5>
+                                        <!--<h5 class="flex-grow-1 fs-16 mb-0" id="filetype-title">{{$nomtiporol}}</h5>-->
+                                        <div class="input-group">
+                                            <div class="col-sm-1 ">
+                                                <input type="text" class="form-control border-0 fw-semibold" placeholder="ID"  value="TIPO ROL:"/>
+                                            </div>
+                                            <div class="col-xxl-4 col-sm-4">
+                                                <select class="form-select" data-choices data-choices-search-false
+                                                    name="choices-single-default" id="cmbnivel" wire:model.defer ="selectId" wire:change='loadData()'>
+                                                     @foreach ($tbltiposrols as $tipo)
+                                                        <option value="{{$tipo->id}}" selected>{{$tipo->descripcion}}</option>
+                                                     @endforeach                                
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="flex-shrink-0">
-                                            <button class="btn btn-success" wire:click.prevent="add()" data-bs-toggle="modal" data-bs-target="" ><i class="ri-add-line align-bottom me-1"></i> Create File</button>
+                                            <button class="btn btn-success" wire:click.prevent="add()" data-bs-toggle="modal" data-bs-target="" ><i class="ri-add-line align-bottom me-1"></i>Agregar Rubro</button>
                                         </div>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table align-middle table-nowrap mb-0">
-                                            <thead class="table-active">
-                                                <tr>
+                                    <div class="card-body border border-dashed border-end-0 border-start-0 mb-3">
+                                    </div>
+                                    <div class="table-responsive table-card mb-1">
+                                        <table class="table table-nowrap align-middle" id="orderTable">
+                                            <thead class="text-muted table-light">
+                                                <tr class="text-uppercase">
                                                     <th scope="col">Rubro</th>
                                                     <th scope="col">Etiqueta</th>
                                                     <th scope="col">Tipo</th>
@@ -111,24 +124,12 @@
                                 </div>
                             </div>
                         </div>
-                            
-
-                            <!--<div class="tab-pane" id="productnav-draft" role="tabpanel">
-                                <div class="py-4 text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json"
-                                        trigger="loop" colors="primary:#405189,secondary:#0ab39c"
-                                        style="width:72px;height:72px">
-                                    </lord-icon>
-                                    <h5 class="mt-4">Sorry! No Result Found</h5>
-                                </div>
-                            </div>-->
-                            <!-- end tab pane -->
                         
                         <!-- end tab content -->
                         <div wire.ignore.self class="modal fade zoomIn" id="showModal" tabindex="-1" aria-labelledby="createFileModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content border-0">
-                                    <div class="modal-header p-3 bg-soft-primary">
+                                    <div class="modal-header p-3 bg-light">
                                         <h5 class="modal-title" id="createFileModalLabel">Agregar Rubros</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" id="addFileBtn-close" aria-label="Close"></button>
                                     </div>
@@ -161,8 +162,8 @@
                                             </div>
 
                                             <div class="hstack gap-2 justify-content-end">
-                                                <button type="button" class="btn btn-ghost-success" data-bs-dismiss="modal"><i class="ri-close-line align-bottom"></i> Close</button>
-                                                <button type="submit" class="btn btn-primary" id="addNewFile">Create</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="ri-close-line align-bottom"></i> Close</button>
+                                                <button type="submit" class="btn btn-success" id="addNewFile">Grabar</button>
                                             </div>
                                         </form>
                                     </div>

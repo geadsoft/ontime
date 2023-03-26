@@ -10,7 +10,7 @@ class Vccatalogogeneral extends Component
     use WithPagination;
 
     public $showEditModal = false;
-    public $selectId;
+    public $selectId, $selectValue;
     public $record;
     public $codigo;
 
@@ -79,8 +79,10 @@ class Vccatalogogeneral extends Component
 
     public function delete( $id ){
         
- 
         $this->selectId = $id;
+        $record = TmCatalogogeneral::find($this->selectId);
+        $this->selectValue = $record['descripcion'];
+
         $this->dispatchBrowserEvent('show-delete');
 
     }
@@ -106,7 +108,7 @@ class Vccatalogogeneral extends Component
         ]);
 
         $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);  
-        
+        $this->dispatchBrowserEvent('msg-grabar');
     }
 
     public function updateData(){
@@ -131,11 +133,18 @@ class Vccatalogogeneral extends Component
         }
       
         $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);
+        $this->dispatchBrowserEvent('msg-actualizar');
         
     }
 
     public function deleteData(){
-        TmCatalogogeneral::find($this->selectId)->delete();
+
+        $record = TmCatalogogeneral::find($this->selectId);
+
+        $record->update([
+            'estado' => 'I',
+        ]);
+
         $this->dispatchBrowserEvent('hide-delete');
     }
    
@@ -177,6 +186,14 @@ class Vccatalogogeneral extends Component
         $this->record['codigo']= $this->codigo;
         $this->record['root']= $root;
  
+    }
+
+    public function resetFilter(){
+
+        $this->filters['estado'] = 'A';
+        $this->filters['nivel'] = '';
+        $this->filters['descripcion'] = '';
+
     }
 
 }

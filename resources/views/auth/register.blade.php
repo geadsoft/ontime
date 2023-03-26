@@ -25,10 +25,10 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="index" class="d-inline-block auth-logo">
-                                    <img src="{{ URL::asset('assets/images/logo-light.png') }}" alt="" height="20">
+                                    <!--<img src="{{ URL::asset('assets/images/logo-light.png') }}" alt="" height="20">-->
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                            <p class="mt-3 fs-15 fw-medium">Control de Nómina y Generación de Rol de Pagos</p>
                         </div>
                     </div>
                 </div>
@@ -40,8 +40,8 @@
 
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Create New Account</h5>
-                                    <p class="text-muted">Get your free velzon account now</p>
+                                    <h5 class="text-primary">Crear Nueva Cuenta</h5>
+                                    <p class="text-muted"></p>
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form class="needs-validation" novalidate method="POST"
@@ -52,53 +52,53 @@
                                                     class="text-danger">*</span></label>
                                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                                 name="email" value="{{ old('email') }}" id="useremail"
-                                                placeholder="Enter email address" required>
+                                                placeholder="Ingrese direcciòn de correo electronico" required>
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                             <div class="invalid-feedback">
-                                                Please enter email
+                                                Por favor, ingrese correo electronico
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="username" class="form-label">Username <span
+                                            <label for="username" class="form-label">Usuario <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                 name="name" value="{{ old('name') }}" id="username"
-                                                placeholder="Enter username" required>
+                                                placeholder="Ingrese nombre de usuario" required>
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                             <div class="invalid-feedback">
-                                                Please enter username
+                                                Por favor, ingrese nombre de usuario
                                             </div>
                                         </div>
 
                                         <div class="mb-2">
-                                            <label for="userpassword" class="form-label">Password <span
+                                            <label for="userpassword" class="form-label">Contraseña <span
                                                     class="text-danger">*</span></label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
-                                                id="userpassword" placeholder="Enter password" required>
+                                                id="userpassword" placeholder="Ingrese contraseña" required>
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                             <div class="invalid-feedback">
-                                                Please enter password
+                                                Por favor, ingrese contraseña
                                             </div>
                                         </div>
                                         <div class=" mb-4">
-                                            <label for="input-password">Confirm Password</label>
+                                            <label for="input-password">Confirma Contraseña</label>
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
                                                 name="password_confirmation" id="input-password"
-                                                placeholder="Enter Confirm Password" required>
+                                                placeholder="Ingrese contraseña de confirmación" required>
 
                                             <div class="form-floating-icon">
                                                 <i data-feather="lock"></i>
@@ -117,18 +117,18 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-4">
+                                        <!--<div class="mb-4">
                                             <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the
                                                 Velzon <a href="#"
                                                     class="text-primary text-decoration-underline fst-normal fw-medium">Terms
                                                     of Use</a></p>
-                                        </div>
+                                        </div>-->
 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sign Up</button>
+                                            <button class="btn btn-success w-100" type="submit">Registrar</button>
                                         </div>
 
-                                        <div class="mt-4 text-center">
+                                        <!--<div class="mt-4 text-center">
                                             <div class="signin-other-title">
                                                 <h5 class="fs-13 mb-4 title text-muted">Create account with</h5>
                                             </div>
@@ -147,7 +147,7 @@
                                                     class="btn btn-info btn-icon waves-effect waves-light"><i
                                                         class="ri-twitter-fill fs-16"></i></button>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </form>
 
                                 </div>
@@ -157,8 +157,8 @@
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Already have an account ? <a href="auth-signin-basic"
-                                    class="fw-semibold text-primary text-decoration-underline"> Signin </a> </p>
+                            <p class="mb-0">Ya tienes una cuenta ? <a href="auth-signin-basic"
+                                    class="fw-semibold text-primary text-decoration-underline"> Iniciar Sesión </a> </p>
                         </div>
 
                     </div>
@@ -177,8 +177,8 @@
                         <div class="text-center">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Velzon. Crafted with <i
-                                    class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                            </script> Ontime.  <i
+                                    class=""></i> </p>
                         </div>
                     </div>
                 </div>

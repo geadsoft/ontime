@@ -12,6 +12,7 @@ class TdPlanillaRubros extends Model
     protected $primaryKey = "id";
     protected $fillable = [
         'fecha',
+        'tipo',
         'tiposrol_id',
         'periodosrol_id',
         'persona_id',

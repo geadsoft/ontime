@@ -15,7 +15,12 @@ class VcContratos extends Component
     use WithPagination;
 
     public $showEditModal = false;
-    public $selectId, $record;
+    public $selectId, $selectValue, $record;
+    public $filters = [
+        'nombres' => '',
+        'departamento' => '',
+        'cargo' => '',
+    ];
 
     public function render()
     {
@@ -24,7 +29,22 @@ class VcContratos extends Component
         $tcontratos = TmCatalogogeneral::where('superior',2)->get();
         $areas      = TmArea::all();
         $cargos     = TmCargocia::all();
-        $tblrecords = TmContratos::paginate(10);
+
+        $tblrecords = TmContratos::query()
+        ->join("tm_personas as p","p.id","=","tm_contratos.persona_id")
+        ->when($this->filters['nombres'],function($query){
+            return $query->where('nombres','like','%'.$this->filters['nombres'].'%')
+                        ->orWhere('apellidos','like','%'.$this->filters['nombres'].'%');
+        })
+        ->when($this->filters['departamento'],function($query){
+            return $query->where('tm_contratos.departamento_id',$this->filters['departamento']);
+        })
+        ->when($this->filters['cargo'],function($query){
+            return $query->where('tm_contratos.cargo_id',$this->filters['cargo']);
+        })
+        ->select('tm_contratos.*','p.nombres','p.apellidos')
+        ->orderBy('apellidos')
+        ->paginate(10);
 
         return view('livewire.vc-contratos',[
             'tblrecords'  => $tblrecords,
@@ -81,6 +101,10 @@ class VcContratos extends Component
     public function delete( $id ){
         
         $this->selectId = $id;
+        $record = TmContratos::find($id);
+
+        $this->selectValue = $record->persona['apellidos'].' '.$record->persona['nombres'];
+
         $this->dispatchBrowserEvent('show-delete');
 
     }
@@ -122,11 +146,66 @@ class VcContratos extends Component
             'usuario' => auth()->user()->name,
         ]);
 
-        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);  
+        $this->dispatchBrowserEvent('hide-form');
+        $this->dispatchBrowserEvent('msg-grabar');   
         
     }
 
+    public function updateData(){
 
+        $this ->validate([
+            'record.fecha' => 'required',
+            'record.persona_id' => 'required',
+            'record.tipoempleado_id' => 'required',
+            'record.tipocontrato_id' => 'required',
+            'record.area_id' => 'required',
+            'record.departamento_id' => 'required',
+            'record.cargo_id' => 'required',
+            'record.fecha_ingreso' => 'required',
+            'record.fondo_reserva' => 'required',
+            'record.sueldo' => 'required',
+            'record.anticipo' => 'required',
+        ]);      
+        
+        $record = TmContratos::find($this->selectId);
+        $record->update([
+            'tipoempleado_id' => $this -> record['tipoempleado_id'],
+            'tipocontrato_id' => $this -> record['tipocontrato_id'],
+            'area_id' => $this -> record['area_id'],
+            'departamento_id' => $this -> record['departamento_id'],
+            'cargo_id' => $this -> record['cargo_id'],
+            'fecha_ingreso' => $this -> record['fecha_ingreso'],
+            'fecha_salida' => $this -> record['fecha_salida'],
+            'fondo_reserva' => $this -> record['fondo_reserva'],
+            'sueldo' => $this -> record['sueldo'],
+            'anticipo' => $this -> record['anticipo'],
+            'codigo_sectorial' => $this -> record['codigo_sectorial'],
+            'tipo_pago' => $this -> record['tipo_pago'],
+        ]);
+            
+        $this->dispatchBrowserEvent('hide-form');
+        $this->dispatchBrowserEvent('msg-actualizar');
 
+        
+    }
+    
+    public function deleteData(){
+
+        $record = TmContratos::find($this->selectId);
+
+        $record->update([
+            'estado' => 'I',
+        ]);
+
+        $this->dispatchBrowserEvent('hide-delete');
+    }
+
+    public function resetFilter(){
+
+        $this->filters['nombres'] = '';
+        $this->filters['departamento'] = '';
+        $this->filters['cargo'] = '';
+
+    }
 
 }

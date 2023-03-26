@@ -15,19 +15,12 @@
                                             class=" ri-open-source-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
                                             Datos Personales</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                <!--<li class="nav-item" role="presentation">
                                     <button class="nav-link fs-15 p-3" id="pills-bill-family-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-bill-family" type="button" role="tab"
                                         aria-controls="pills-bill-family" aria-selected="false"><i
                                             class="ri-user-2-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
                                             RRHH</button>
-                                </li>
-                                <!--<li class="nav-item" role="presentation">
-                                    <button class="nav-link fs-15 p-3" id="pills-bill-responsible-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-bill-responsible" type="button" role="tab"
-                                        aria-controls="pills-bill-responsible" aria-selected="false"><i
-                                            class="ri-bank-card-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
-                                            Medical Data</button>
                                 </li>-->
                             </ul>
                         </div>
@@ -239,12 +232,13 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="hstack gap-2 justify-content-end">
+                                        <a class="btn btn-secondary w-sm" href="/file/staff"><i class="me-1 align-bottom"></i>Cancelar</a>
                                         @if ($personaId==0)
-                                            <button type="submit" class="btn btn-primary">Save Record</button>
+                                            <button type="submit" class="btn btn-success">Grabar</button>
                                         @else 
-                                            <button type="submit" class="btn btn-primary">Update Record</button>
+                                            <button type="submit" class="btn btn-success">Grabar</button>
                                         @endif
-                                        <a class="btn btn-secondary w-sm" href="/academic/students"><i class="me-1 align-bottom"></i>Cancel</a>
+                                        
                                     </div>
                                 </div>
                                    

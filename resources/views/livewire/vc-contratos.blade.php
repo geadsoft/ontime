@@ -8,7 +8,7 @@
                         <h5 class="card-title mb-0 flex-grow-1">Listado de Contratos</h5>
                         <div class="flex-shrink-0">
                             <button type="button" wire:click.prevent="add()" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"
-                                data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Create
+                                data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Agregar
                             </button>
                         </div>
                     </div>
@@ -19,15 +19,15 @@
                             <div class="col-xxl-5 col-sm-6">
                                 <div class="search-box">
                                     <input type="text" class="form-control search"
-                                        placeholder="Buscar por apellidos y nombres" wire:model="filters.descripcion">
+                                        placeholder="Buscar por apellidos y nombres" wire:model="filters.nombres">
                                     <i class="ri-search-line search-icon"></i>
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-sm-4">
                                 <div>
                                     <select class="form-select" data-choices data-choices-search-false
-                                        name="choices-single-default" id="cmbnivel" wire:model="filters.nivel">
-                                        <option value="0" selected>Todos</option>
+                                        name="choices-single-default" id="cmbnivel" wire:model="filters.departamento">
+                                        <option value="" selected>Todos</option>
                                         @foreach ($areas as $area)
                                             <option value="{{$area->id}}">{{$area->descripcion}}</option>
                                         @endforeach                                
@@ -38,8 +38,8 @@
                             <div class="col-xxl-2 col-sm-4">
                                 <div>
                                     <select class="form-select" data-choices data-choices-search-false
-                                        name="choices-single-default" id="cmbestado" wire:model="filters.estado">
-                                        <option value="0" selected>Todos</option>
+                                        name="choices-single-default" id="cmbestado" wire:model="filters.cargo">
+                                        <option value="" selected>Todos</option>
                                         @foreach ($cargos as $cargo)
                                             <option value="{{$cargo->id}}">{{$cargo->descripcion}}</option>
                                         @endforeach
@@ -49,9 +49,9 @@
                             <!--end col-->
                             <div class="col-xxl-1 col-sm-4">
                                 <div>
-                                    <button type="button" class="btn btn-primary w-100" onclick="SearchData();"> <i
+                                    <button type="button" class="btn btn-primary w-100" wire:click="resetFilter();"> <i
                                             class="ri-equalizer-fill me-1 align-bottom"></i>
-                                        Filtrar
+                                        Todos
                                     </button>
                                 </div>
                             </div>
@@ -63,49 +63,12 @@
                 <div class="card-body pt-0">
                     <div>
                         <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
-                            <!--<li class="nav-item">
-                                <a class="nav-link active All py-3" data-bs-toggle="tab" id="All" href="#home1" role="tab"
-                                    aria-selected="true">
-                                    <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Delivered" data-bs-toggle="tab" id="Delivered" href="#delivered"
-                                    role="tab" aria-selected="false">
-                                    <i class="ri-checkbox-circle-line me-1 align-bottom"></i> Delivered
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Pickups" data-bs-toggle="tab" id="Pickups" href="#pickups"
-                                    role="tab" aria-selected="false">
-                                    <i class="ri-truck-line me-1 align-bottom"></i> Pickups <span
-                                        class="badge bg-danger align-middle ms-1">2</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Returns" data-bs-toggle="tab" id="Returns" href="#returns"
-                                    role="tab" aria-selected="false">
-                                    <i class="ri-arrow-left-right-fill me-1 align-bottom"></i> Returns
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 Cancelled" data-bs-toggle="tab" id="Cancelled" href="#cancelled"
-                                    role="tab" aria-selected="false">
-                                    <i class="ri-close-circle-line me-1 align-bottom"></i> Cancelled
-                                </a>
-                            </li>-->
                         </ul>
 
                         <div class="table-responsive table-card mb-1">
                             <table class="table table-nowrap align-middle" id="orderTable">
                                 <thead class="text-muted table-light">
                                     <tr class="text-uppercase">
-                                        <!--<th scope="col" style="width: 25px;">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="checkAll"
-                                                    value="option">
-                                            </div>
-                                        </th>-->
                                         <th scope="col">Fecha Ingreso</th>
                                         <th scope="col">Colaborador</th>                                        
                                         <th scope="col">Tipo Contrato</th>
@@ -115,7 +78,6 @@
                                         <th scope="col">Código IESS</th>
                                         <th scope="col">Estado</th>
                                         <th scope="col">Acción</th>
-                                        
                                     </tr>
                                 </thead>
                                 <tbody class="list form-check-all">
@@ -217,7 +179,7 @@
                                                         name="choices-single-default" id="cmbarea" wire:model.defer="record.area_id" required>
                                                         <option value="" selected>Seleccione Área</option>
                                                         @foreach ($areas as $area)
-                                                            @if ($area->area_id==null) 
+                                                            @if ($area->area_id==null)) 
                                                                 <option value="{{$area->id}}">{{$area->descripcion}}</option>
                                                             @endif
                                                         @endforeach                              
@@ -302,14 +264,14 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="sueldo" class="form-label">Sueldo</label>
-                                                    <input type="number" class="form-control" id="sueldo"
+                                                    <input type="number" class="form-control" step="0.01" id="sueldo"
                                                     placeholder="Ingrese el sueldo" wire:model.defer="record.sueldo" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="anticipo" class="form-label">Anticipo</label>
-                                                    <input type="number" class="form-control" id="anticipo"
+                                                    <input type="number" class="form-control" step="0.01" id="anticipo"
                                                     placeholder="Ingrese el anticipo ($)" wire:model.defer="record.anticipo" required>
                                                 </div>
                                             </div>
@@ -336,7 +298,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <div class="hstack gap-2 justify-content-end">
-                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                             <button type="submit" class="btn btn-success" id="add-btn">Grabar</button>
                                         </div>
                                     </div>
@@ -346,7 +308,7 @@
                     </div>
 
                     <!-- Modal -->
-                    <div wire.ignore.self class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true" wire:model='selectId'>
+                    <div wire.ignore.self class="modal fade flip" id="deleteRecord" tabindex="-1" aria-hidden="true" wire:model='selectId'>
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-body p-5 text-center">
@@ -354,16 +316,15 @@
                                         colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px">
                                     </lord-icon>
                                     <div class="mt-4 text-center">
-                                        <h4>You are about to delete the record ? {{ $selectId }}</h4>
-                                        <p class="text-muted fs-15 mb-4">DDeleting the record will remove
-                                            all of
-                                            your information from our database.</p>
+                                        <h4>¿Está a punto de inactivar el registro? {{ $selectValue }}</h4>
+                                        <p class="text-muted fs-15 mb-4">Inactivar el registro afectará toda su 
+                                        información de nuestra base de datos.</p>
                                         <div class="hstack gap-2 justify-content-center remove">
                                             <button class="btn btn-link link-success fw-medium text-decoration-none"
                                                 data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>
-                                                Close</button>
-                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Yes,
-                                                Delete It</button>
+                                                Cerrar </button>
+                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Si,
+                                                Inactivar</button>
                                         </div>
                                     </div>
                                 </div>

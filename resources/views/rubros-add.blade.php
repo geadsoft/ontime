@@ -24,9 +24,23 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
-         window.addEventListener('msg-grabar', event => {
-            swal("Good job!", "Record recorded successfully!", "success");
+
+        window.addEventListener('show-delete', event => {
+            $('#deleteRecord').modal('show');
         })
+
+        window.addEventListener('hide-delete', event => {
+            $('#deleteRecord').modal('hide');
+        })
+
+        window.addEventListener('msg-grabar', event => {
+            swal("¡Grabado!", "Registro ha sido grabado exitosamente!", "success");
+        })
+
+        window.addEventListener('msg-actualizar', event => {
+            swal("¡Actualizado!", "Registro ha sido actualizado exitosamente!", "success");
+        })
+        
     </script>
 
     

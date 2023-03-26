@@ -9,10 +9,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Management
+            Administrar
         @endslot
         @slot('title')
-            Functional Areas
+            Registrar Areas Funcionales
         @endslot
     @endcomponent
 
@@ -27,7 +27,7 @@
     
 
     <!--ecommerce-customer init js -->
-    <script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 
     <script>
@@ -41,12 +41,21 @@
         })
 
         window.addEventListener('show-delete', event => {
-            $('#deleteOrder').modal('show');
+            $('#deleteRecord').modal('show');
         })
 
         window.addEventListener('hide-delete', event => {
-            $('#deleteOrder').modal('hide');
+            $('#deleteRecord').modal('hide');
         })
+
+        window.addEventListener('msg-grabar', event => {
+            swal("¡Grabado!", "Registro ha sido grabado exitosamente!", "success");
+        })
+
+        window.addEventListener('msg-actualizar', event => {
+            swal("¡Actualizado!", "Registro ha sido actualizado exitosamente!", "success");
+        })
+
 
     </script>
     

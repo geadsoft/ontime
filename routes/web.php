@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controller\TmAreaController;
+use App\Http\Livewire\VcRegistrarPagos;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::get('/form/departament',[App\Http\Controllers\TmDepartamentsController::c
 Route::get('/payroll/tiposrol',[App\Http\Controllers\TmTiposrolController::class, 'index'])->name('index');
 Route::get('/payroll/assign-rubros',[App\Http\Controllers\TmTiposrolRubrosController::class, 'index'])->name('index');
 Route::get('/payroll/planilla',[App\Http\Controllers\TdPlanillaController::class, 'index'])->name('index');
-Route::get('/payroll/rolpago',[App\Http\Controllers\TdRolPagoController::class, 'index'])->name('index');
+Route::get('/payroll/rolpago',[App\Http\Controllers\TdRolPagosController::class, 'index'])->name('index');
 Route::get('/setting/generalities',[App\Http\Controllers\TmCatalogogeneralController::class, 'index'])->name('index');
 Route::get('/form/charges',[App\Http\Controllers\TmCargociaController::class, 'index'])->name('index');
 Route::get('/empresa',[App\Http\Controllers\TmCompaniaController::class, 'index'])->name('index');
@@ -34,8 +35,14 @@ Route::get('/file/staff',[App\Http\Controllers\TmPersonasController::class, 'ind
 Route::get('/file/staff-add',[App\Http\Controllers\TmPersonasController::class, 'addperson'])->name('addperson');
 Route::get('/file/staff-edit/{id}',[App\Http\Controllers\TmPersonasController::class, 'editperson'])->name('editperson');
 Route::get('/file/contracts',[App\Http\Controllers\TmContratosController::class, 'index'])->name('index');
+Route::get('/payroll/prestamos',[App\Http\Controllers\TdPrestamosController::class, 'addprestamo'])->name('index');
+Route::get('/payroll/prestamos/{id}',[App\Http\Controllers\TdPrestamosController::class, 'editprestamo'])->name('editprestamo');
+Route::get('/payroll/registrar-pagos/{id}',[App\Http\Controllers\TdRolPagosController::class, 'rolpago'])->name('rolpago');
+Route::get('/payroll/registrar-pagos/edit/{id}',[App\Http\Controllers\TdRolPagosController::class, 'edit_rolpago'])->name('editrolpago');
+Route::get('/payroll/nominas',[App\Http\Controllers\TcRolPagosController::class, 'index'])->name('index');
 
-
+Route::get('/download-pdf/nomina/{data}',[VcRegistrarPagos::class, 'downloadPDF']);
+Route::get('/download-pdf/pagorol/{data}',[VcRegistrarPagos::class, 'downloadRolPDF']);
 
 
 /*Route::view('viewmodal','livewire.vcarea');*/
@@ -53,4 +60,6 @@ Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 
-Route::post('/areas',[App\Http\Controllers\TmAreaController::class, 'store']);
+//Route::post('/areas',[App\Http\Controllers\TmAreaController::class, 'store']);
+
+?>

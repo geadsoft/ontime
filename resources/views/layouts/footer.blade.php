@@ -6,7 +6,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Payroll and Generation of Payment Roles
+                    Control de Nómina y Generación de Rol de Pagos
                 </div>
             </div>
         </div>

@@ -110,157 +110,40 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/form/periods" class="nav-link" role="button">@lang('translation.periods')
+                                <a href="/payroll/tiposrol" class="nav-link" role="button">@lang('translation.role-types')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/payroll/assign-rubros" class="nav-link" role="button">@lang('translation.assign-rubros-role-types')
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="/form/rubros" class="nav-link" role="button">@lang('translation.rubros')
                                 </a>
                             </li>
-
-                            <!--<li class="nav-item">
-                                <a href="#sidebarSignUp" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSignUp">@lang('translation.signup')
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarSignUp">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-signup-basic" class="nav-link">@lang('translation.basic')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-signup-cover" class="nav-link">@lang('translation.cover')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#sidebarResetPass" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarResetPass">@lang('translation.password-reset')
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarResetPass">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-pass-reset-basic" class="nav-link">@lang('translation.basic')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-pass-reset-cover" class="nav-link">@lang('translation.cover')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#sidebarchangePass" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarchangePass">@lang('translation.password-create')
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarchangePass">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-pass-change-basic" class="nav-link">@lang('translation.basic')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-pass-change-cover" class="nav-link">@lang('translation.cover')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#sidebarLockScreen" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLockScreen">@lang('translation.lock-screen')
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarLockScreen">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-lockscreen-basic" class="nav-link">@lang('translation.basic')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-lockscreen-cover" class="nav-link">@lang('translation.cover')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#sidebarLogout" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLogout">@lang('translation.logout')
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarLogout">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-logout-basic" class="nav-link">@lang('translation.basic')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-logout-cover" class="nav-link">@lang('translation.cover')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarSuccessMsg" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSuccessMsg">@lang('translation.success-message')
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarSuccessMsg">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-success-msg-basic" class="nav-link">@lang('translation.basic')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-success-msg-cover" class="nav-link">@lang('translation.cover')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarTwoStep" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTwoStep">@lang('translation.two-step-verification')
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarTwoStep">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-twostep-basic" class="nav-link">@lang('translation.basic')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-twostep-cover" class="nav-link">@lang('translation.cover')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarErrors" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarErrors">@lang('translation.errors')
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarErrors">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="auth-404-basic" class="nav-link">@lang('translation.404-basic')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-404-cover" class="nav-link">@lang('translation.404-cover')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-404-alt" class="nav-link">@lang('translation.404-alt')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-500" class="nav-link">@lang('translation.500')</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="auth-offline" class="nav-link">@lang('translation.offline-page')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>-->
                         </ul>
                     </div>
                 </li>
                 
                 <li class="menu-title"><i class="ri-more-fill"></i> <span>@lang('translation.payroll')</span></li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link menu-link" href="/payroll/tiposrol">
                         <i class="ri-t-box-line"></i> <span>@lang('translation.role-types')</span>
                     </a>
-                </li>
+                </li>-->>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="/payroll/assign-rubros">
-                        <i class="ri-folders-fill"></i> <span>@lang('translation.assign-rubros-role-types')</span>
+                    <a class="nav-link menu-link" href="/form/periods">
+                        <i class="ri-folders-fill"></i> <span>@lang('translation.periods')</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link menu-link" href="widgets">
                         <i class="las la-comment-dollar"></i> <span>@lang('translation.fixed-rubros')</span>
+                    </a>
+                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="/payroll/prestamos">
+                        <i class="ri-hand-coin-fill"></i> <span>@lang('translation.prestamos')</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -268,10 +151,25 @@
                         <i class="las la-file-invoice"></i> <span>@lang('translation.planilla')</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link menu-link" href="/payroll/rolpago">
                         <i class="las la-check-circle"></i> <span>@lang('translation.generate-payroll')</span>
                     </a>
+                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarRoles" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarRoles">
+                        <i class="las la-check-circle"></i> <span>Roles</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarRoles">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="/payroll/rolpago" class="nav-link" role="button">Generar Rol</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/payroll/nominas" class="nav-link" role="button">Roles</a>
+                                </li>
+                            </ul>
+                    </div>
                 </li>
                 
                 <!--<li class="menu-title"><i class="ri-more-fill"></i> <span>@lang('translation.process')</span></li>-->

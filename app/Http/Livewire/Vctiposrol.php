@@ -13,7 +13,7 @@ class Vctiposrol extends Component
     use WithPagination;
 
     public $showEditModal = false;
-    public $selectId;
+    public $selectId, $selectValue;
     public $record;
     public $estados = [
         'A' => 'Activo',
@@ -25,10 +25,27 @@ class Vctiposrol extends Component
         'B' => 'Beneficios',
         'L' => 'Liquidación',
     ];
+    public $filters = [
+        'descripcion' => '',
+        'empleado' => '',
+        'contrato' => '',
+    ];
+
 
     public function render()
     {        
-        $tblrecords = TmTiposrol::paginate(10);
+        $tblrecords = TmTiposrol::query()
+        ->when($this->filters['descripcion'],function($query){
+            return $query->where('descripcion','like','%'.$this->filters['descripcion'].'%');
+        })
+        ->when($this->filters['empleado'],function($query){
+            return $query->where('tipoempleado_id',$this->filters['empleado']);
+        })
+        ->when($this->filters['contrato'],function($query){
+            return $query->where('tipocontrato_id',$this->filters['contrato']);
+        })     
+        ->paginate(10);
+
         $tblempleados =  TmCatalogogeneral::where('superior',1)->orderBy('codigo','asc')->get();
         $tblcontratos =  TmCatalogogeneral::where('superior',2)->orderBy('codigo','asc')->get();
 
@@ -68,8 +85,10 @@ class Vctiposrol extends Component
 
     public function delete( $id ){
         
- 
         $this->selectId = $id;
+        $record = TmTiposrol::find($id);
+
+        $this->selectValue = $record['descripcion'];
         $this->dispatchBrowserEvent('show-delete');
 
     }
@@ -93,7 +112,8 @@ class Vctiposrol extends Component
             'estado' => $this -> record['estado'],
         ]);
 
-        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);  
+        $this->dispatchBrowserEvent('hide-form');
+        $this->dispatchBrowserEvent('msg-grabar');  
         
     }
 
@@ -122,13 +142,26 @@ class Vctiposrol extends Component
             
         }
       
-        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);
+        $this->dispatchBrowserEvent('hide-form');
+        $this->dispatchBrowserEvent('msg-actualizar');
         
     }
 
     public function deleteData(){
-        TmTiposrol::find($this->selectId)->delete();
+
+        $record = TmTiposrol::find($this->selectId);
+        $record->update([
+            'estado' => 'I',
+        ]);
+
         $this->dispatchBrowserEvent('hide-delete');
+    }
+    public function resetFilter(){
+
+        $this->filters['descripcion'] = '';
+        $this->filters['empleado']    = '';
+        $this->filters['contrato']    = '';
+
     }
 
 

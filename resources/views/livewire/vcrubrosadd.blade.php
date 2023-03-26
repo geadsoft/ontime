@@ -114,28 +114,23 @@
                                             @foreach ($baseRubros as $record)
                                             <tr>
                                                 <td> 
-                                                    <select type="select" class="form-control" data-trigger name="detrubro" value="{{$record['baserubrorol_id']}}" disabled>
-                                                    @foreach ($tblrubros as $rubro)
-                                                        @if ($record['baserubrorol_id']==$rubro->id)
-                                                            <option value="{{$rubro->id}}" selected>{{$rubro->descripcion}}</option>
-                                                        @else
-                                                            <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
-                                                        @endif
-                                                    @endforeach                                                
-                                                    </select>
+                                                    {{$record['descripcion']}}
+                                                    <!--<input type="text" class="form-control-sm bg-light border-0" value='{{$record['descripcion']}}' disabled/>-->
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control  product-price" id="detimporte" step="0.01" placeholder="0.00" value= {{number_format($record['importe'],2)}} disabled>
+                                                    {{number_format($record['importe'],2)}}
+                                                    <!--<input type="number" class="form-control-sm bg-light border-0 product-price" id="detimporte" step="0.01" placeholder="0.00" value= {{number_format($record['importe'],2)}} disabled>-->
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control  product-price" id="detcontante" step="0.01" placeholder="0.00" value={{number_format($record['constante'],2)}} disabled>
+                                                    {{number_format($record['constante'],2)}}
+                                                    <!--<input type="number" class="form-control-sm bg-light border-0 product-price" id="detcontante" step="0.01" placeholder="0.00" value={{number_format($record['constante'],2)}} disabled>-->
                                                 </td>
                                                 <td>
                                                     <ul class="list-inline hstack gap-2 mb-0">
                                                         <li class="list-inline-item" data-bs-toggle="tooltip"
                                                             data-bs-trigger="hover" data-bs-placement="top" title="Remove">
                                                             <a class="text-danger d-inline-block remove-item-btn"
-                                                                data-bs-toggle="modal" href="" wire:click.prevent="deleteBase({{ $record['id'] }})">
+                                                                data-bs-toggle="modal" href="" wire:click.prevent="delete({{ $record['id'] }})">
                                                                 <i class="ri-delete-bin-5-fill fs-16"></i>
                                                             </a>
                                                         </li>
@@ -346,7 +341,7 @@
                     <div class="card-body">
                         <div class="justify-content-end">
                             <button type="submit" class="btn btn-success w-sm">Grabar</button>
-                            <button type="submit" class="btn btn-secondary w-sm">Cancelar</button>
+                            <a class="btn btn-secondary w-sm" href="/form/rubros"><i class="me-1 align-bottom"></i>Cancelar</a>
                         </div>
                     </div>
                 </div>
@@ -355,4 +350,27 @@
         </div>
         <!-- end row -->
     </form>
+    <div wire.ignore.self class="modal fade flip" id="deleteRecord" tabindex="-1" aria-hidden="true" wire:model='selectId'>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-5 text-center">
+                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                        colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px">
+                    </lord-icon>
+                    <div class="mt-4 text-center">
+                        <h4>¿Está a punto de eliminar el registro? {{ $selectValue }}</h4>
+                        <p class="text-muted fs-15 mb-4">Eliminar el registro afectará toda su 
+                        información de nuestra base de datos.</p>
+                        <div class="hstack gap-2 justify-content-center remove">
+                            <button class="btn btn-link link-success fw-medium text-decoration-none"
+                                data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>
+                                Cerrar </button>
+                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Si,
+                                Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

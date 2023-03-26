@@ -11,11 +11,10 @@ class Vccargocia extends Component
     
     use WithPagination;
     public $showEditModal = false;
-    public $selectId;
+    public $selectId, $selectValue;
     public $record;
     public $filters = [
         'estado' => 'A',
-        'nivel' => '',
         'descripcion' => '',
     ];
   
@@ -35,10 +34,6 @@ class Vccargocia extends Component
         })
         ->when($this->filters['estado'],function($query){
             return $query->where('estado',$this->filters['estado']);
-        })
-        ->when($this->filters['nivel'],function($query){
-            return $query->where('cargo_id',$this->filters['nivel'])
-                         ->orWhere('id',$this->filters['nivel']);
         })
         ->orderByRaw('case when cargo_id = 0 then id else cargo_id end, cargo_id')
         ->paginate(10);
@@ -78,6 +73,10 @@ class Vccargocia extends Component
     public function delete( $id ){
         
         $this->selectId = $id;
+        
+        $record = TmCargocia::find($id);
+        $this->selectValue = $record['descripcion'];
+
         $this->dispatchBrowserEvent('show-delete');
 
     }
@@ -96,7 +95,8 @@ class Vccargocia extends Component
             'estado' => $this -> record['estado'],
         ]);
 
-        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);  
+        $this->dispatchBrowserEvent('hide-form');  
+        $this->dispatchBrowserEvent('msg-grabar');
         
     }
 
@@ -121,13 +121,26 @@ class Vccargocia extends Component
             
         }
       
-        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);
-        session()->flash('message','Registro actualizado con éxito');
+        $this->dispatchBrowserEvent('hide-form');
+        $this->dispatchBrowserEvent('msg-actualizar');
     }
 
     public function deleteData(){
-        TmCargocia::find($this->selectId)->delete();
+        
+        $record = TmCargocia::find($this->selectId);
+
+        $record->update([
+            'estado' => 'I',
+        ]);
+
         $this->dispatchBrowserEvent('hide-delete');
+    }
+
+    public function resetFilter(){
+
+        $this->filters['estado'] = 'A';
+        $this->filters['descripcion'] = '';
+
     }
 
     public function selectValue($value){

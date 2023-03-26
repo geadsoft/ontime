@@ -11,6 +11,7 @@ class VcPersonas extends Component
     
     use WithPagination;
 
+    public $selectId, $selectValue;
     public $filters = [
         'srv_nombre' => '',
     ];
@@ -58,8 +59,22 @@ class VcPersonas extends Component
     public function delete( $id ){
  
         $this->selectId = $id;
+        $record = TmPersonas::find($id);
+        $this->selectValue = $record['apellidos'].' '.$record['nombres'];
+
         $this->dispatchBrowserEvent('show-delete');
 
+    }
+
+    public function deleteData(){
+
+        $record = TmPersonas::find($this->selectId);
+
+        $record->update([
+            'estado' => 'I',
+        ]);
+
+        $this->dispatchBrowserEvent('hide-delete');
     }
 
 

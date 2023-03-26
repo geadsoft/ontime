@@ -13,7 +13,7 @@ class VcTiposrolRubros extends Component
 {
     
     use WithPagination;
-    public $selectId =1, $nomtiporol="", $showEditModal=false;
+    public $selectId=1, $nomtiporol="", $showEditModal=false;
     public $rubroId, $rubroTipo, $rubroPago;
     public $arrayTipo = [
         'P' => 'Percepción',
@@ -27,7 +27,7 @@ class VcTiposrolRubros extends Component
     public function render()
     {
         $tbltiposrols = TmTiposrol::all();
-        $tblrubros    = TmRubrosrol::all();
+        $tblrubros    = TmRubrosrol::where('estado','A')->get();
         $tblrecords   = TdTiporolRubros::where('tiposrol_id',$this->selectId)->paginate(12);
 
         return view('livewire.vc-tiposrol-rubros',[
@@ -42,8 +42,8 @@ class VcTiposrolRubros extends Component
         return 'vendor.livewire.bootstrap'; 
     }
 
-    public function loadData($id){
-        $this->selectId = $id;
+    public function loadData(){
+
         $data = TmTiposrol::find($this->selectId);
         $this->nomtiporol = $data['descripcion'];
     }
@@ -57,6 +57,18 @@ class VcTiposrolRubros extends Component
         $this->rubroPago= '';    
         $this->dispatchBrowserEvent('show-form');
         
+    }
+
+    public function edit($record){
+        
+        $this->showEditModal = true;
+        $this->rubroId   = $record['rubrosrol_id'];
+        $this->rubroTipo = $record['tipo'];
+        $this->rubroPago = $record['remuneracion'];
+       
+        $this->selectId = $record['id'];
+        $this->dispatchBrowserEvent('show-form');
+
     }
 
     public function createData(){
@@ -75,7 +87,29 @@ class VcTiposrolRubros extends Component
             'usuario' => auth()->user()->name,
         ]);
 
-        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);  
+        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);
+        $this->dispatchBrowserEvent('msg-grabar');  
+        
+    }
+
+    public function updateData(){
+
+        $this ->validate([
+            'rubroId'   => 'required',
+            'rubroTipo' => 'required',
+            'rubroPago' => 'required',
+        ]);        
+        
+
+        $record = TdTiporolRubros::find($this->selectId);
+        $record->update([
+            'tipo' => $this -> rubroTipo,
+            'remuneracion' => $this -> rubroPago,
+        ]);
+            
+        $this->dispatchBrowserEvent('hide-form');
+        $this->dispatchBrowserEvent('msg-actualizar');
+
         
     }
 

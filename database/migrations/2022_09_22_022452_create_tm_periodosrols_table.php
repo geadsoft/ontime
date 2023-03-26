@@ -17,17 +17,18 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('tiporol_id')->unsigned();
             $table->integer('mes');
-            $table->string('tiempo',1);
+            $table->string('remuneracion',1);
             $table->datetime('fechaini');
             $table->datetime('fechafin');
             $table->boolean('procesado');
             $table->boolean('aprobado');
             $table->boolean('cerrado');
             $table->string('usuario',50);
+            $table->string('estado',1);
             $table->timestamps();
 
             $table->foreign('tiporol_id')->references('id')->on('tm_catalogogenerals');
-            $table->unique(['tiporol_id', 'mes', 'tiempo'],'tiporolid_mes_tiempo_unique');
+            $table->unique(['tiporol_id', 'mes', 'remuneracion'],'tiporolid_mes_tiempo_unique');
         });
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TmCompania extends Model
 {
     //use HasFactory;
-    protected $table = 'tm_companias';
+    protected $table = 'tm_empresas';
     protected $primaryKey = "id";
     protected $fillable = [
         'razonsocial',
@@ -24,6 +24,17 @@ class TmCompania extends Model
         'website',
         'email',
         'imagen',
+        'salario_basico',
+        'aporte_personal',
+        'rubro_appersonal',
+        'aporte_patronal',
+        'rubro_appatronal',
+        'aporte_secap',
+        'rubro_secap',
+        'aporte_iece',
+        'rubro_iece',
+        'rubro_freserva',
+        'rubro_pagofreserva',
         'usuario',
     ];
 

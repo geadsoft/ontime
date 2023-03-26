@@ -5,10 +5,10 @@
             <div class="card" id="orderList">
                 <div class="card-header  border-0">
                     <div class="d-flex align-items-center">
-                        <h5 class="card-title mb-0 flex-grow-1">List of Periods Type Rol</h5>
+                        <h5 class="card-title mb-0 flex-grow-1">Listado de Periodos - Tipos Rol</h5>
                         <div class="flex-shrink-0">
                             <button type="button" wire:click.prevent="add()" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"
-                                data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Create
+                                data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Agregar
                             </button>
                         </div>
                     </div>
@@ -16,18 +16,34 @@
                 <div class="card-body border border-dashed border-end-0 border-start-0">
                     <form>
                         <div class="row g-3">
-                            <div class="col-xxl-5 col-sm-6">
-                                <div class="search-box">
-                                    <input type="text" class="form-control search"
-                                        placeholder="Search for description..." wire:model="filters.descripcion">
-                                    <i class="ri-search-line search-icon"></i>
+                            <div class="col-xxl-2 col-sm-4">
+                                <div>
+                                    <select class="form-select" data-choices data-choices-search-false
+                                        name="choices-single-default" id="filtertipo"  wire:model="filters.periodo">
+                                        <option value="" selected>Periodo</option>
+                                        @foreach($periodos as $periodo)
+                                            <option value="{{$periodo->periodo}}">{{$periodo->periodo}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-sm-4">
                                 <div>
                                     <select class="form-select" data-choices data-choices-search-false
-                                        name="choices-single-default" id="filtertipo"  wire:model="filters.tipo">
-                                        <option value="" selected>All</option>
+                                        name="choices-single-default" id="filtermes" wire:model="filters.mes">
+                                        <option value="" selected>Mes</option>
+                                        @for ($i =1; $i <= 12; $i++)
+                                            <option value="{{$i}}">{{ $meses[$i] }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-xxl-2 col-sm-4">
+                                <div>
+                                    <select class="form-select" data-choices data-choices-search-false
+                                        name="choices-single-default" id="filtertipo"  wire:model="filters.proceso">
+                                        <option value="" selected>Proceso</option>
                                         <option value="Q">Quincenal</option>
                                         <option value="M">Mensual</option>
                                     </select>
@@ -37,20 +53,20 @@
                             <div class="col-xxl-2 col-sm-4">
                                 <div>
                                     <select class="form-select" data-choices data-choices-search-false
-                                        name="choices-single-default" id="filtermes" wire:model="filters.mes">
-                                        <option value="" selected>All</option>
-                                        @for ($i =1; $i <= 12; $i++)
-                                            <option value="{{$i}}">{{ $meses[$i] }}</option>
-                                        @endfor
+                                        name="choices-single-default" id="filtertipo"  wire:model="filters.estado">
+                                        <option value="" selected>Estado</option>
+                                        <option value="G">Generado</option>
+                                        <option value="A">Aprobado</option>
+                                        <option value="C">Cerrado</option>
                                     </select>
                                 </div>
                             </div>
-                            <!--end col-->
+                            <!--end col-->                            
                             <div class="col-xxl-1 col-sm-4">
                                 <div>
-                                    <button type="button" class="btn btn-primary w-100" onclick="SearchData();"> <i
+                                    <button type="button" class="btn btn-primary w-100" wire:click="resetFilter();"> <i
                                             class="ri-equalizer-fill me-1 align-bottom"></i>
-                                        Filters
+                                        Todos
                                     </button>
                                 </div>
                             </div>
@@ -83,7 +99,7 @@
                                     <tr>
                                         <td>{{$record->id}}</td>
                                         <td>{{$record->tiporol->descripcion}}</td> 
-                                        <td>{{$tiempo[$record->tiempo]}}</td> 
+                                        <td>{{$tiempo[$record->remuneracion]}}</td> 
                                         <td> {{$meses[$record->mes]}}</td>    
                                         <td> {{date('d/m/Y', strtotime($record->fechaini))}} - {{date('d/m/Y', strtotime($record->fechafin))}}                                       
                                         </td>
@@ -172,7 +188,7 @@
 
                                         <div class="mb-3">
                                             <label for="cmbtipo" class="form-label">Remuneración</label>
-                                            <select type="select" class="form-select" data-trigger id="cmbtipo" wire:model.defer="record.tiempo" required>
+                                            <select type="select" class="form-select" data-trigger id="cmbtipo" wire:model.defer="record.remuneracion" required>
                                             <option value="">Ingrese tipo de pago</option>
                                             <option value="Q">Quincenal</option>
                                             <option value="M">Mensual</option>
@@ -202,8 +218,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <div class="hstack gap-2 justify-content-end">
-                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success" id="add-btn">Save</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-success" id="add-btn">Grabar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -212,7 +228,7 @@
                     </div>
 
                     <!-- Modal -->
-                    <div wire.ignore.self class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true" wire:model='selectId'>
+                    <div wire.ignore.self class="modal fade flip" id="deleteRecord" tabindex="-1" aria-hidden="true" wire:model='selectId'>
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-body p-5 text-center">
@@ -220,16 +236,15 @@
                                         colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px">
                                     </lord-icon>
                                     <div class="mt-4 text-center">
-                                        <h4>You are about to delete the record ? {{ $selectId }}</h4>
-                                        <p class="text-muted fs-15 mb-4">Deleting the record will remove
-                                            all of
-                                            your information from our database.</p>
+                                        <h4>¿Está a punto de inactivar el registro? {{ $selectValue }}</h4>
+                                        <p class="text-muted fs-15 mb-4">Inactivar el registro afectará toda su 
+                                        información de nuestra base de datos.</p>
                                         <div class="hstack gap-2 justify-content-center remove">
                                             <button class="btn btn-link link-success fw-medium text-decoration-none"
                                                 data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>
-                                                Close</button>
-                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Yes,
-                                                Delete It</button>
+                                                Cerrar </button>
+                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Si,
+                                                Inactivar</button>
                                         </div>
                                     </div>
                                 </div>

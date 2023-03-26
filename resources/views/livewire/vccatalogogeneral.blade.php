@@ -8,12 +8,8 @@
                         <h5 class="card-title mb-0 flex-grow-1">Listado de Catálogo General</h5>
                         <div class="flex-shrink-0">
                             <button type="button" wire:click.prevent="add()" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"
-                                data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Create
-                                </button>
-                            <!--<button type="button" class="btn btn-info"><i
-                                    class="ri-file-download-line align-bottom me-1"></i> Import</button>
-                            <button class="btn btn-danger" onClick="deleteMultiple()"><i
-                                    class="ri-delete-bin-2-line"></i></button>-->
+                                data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Agregar
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -23,22 +19,14 @@
                             <div class="col-xxl-5 col-sm-6">
                                 <div class="search-box">
                                     <input type="text" class="form-control search"
-                                        placeholder="Search for description..." wire:model="filters.descripcion">
+                                        placeholder="Burcar por descripción..." wire:model="filters.descripcion">
                                     <i class="ri-search-line search-icon"></i>
                                 </div>
                             </div>
                             <!--end col-->
-                            <!--<div class="col-xxl-2 col-sm-6">
-                                <div>
-                                    <input type="text" class="form-control" data-provider="flatpickr"
-                                        data-date-format="d M, Y" data-range-date="true" id="demo-datepicker"
-                                        placeholder="Select date">
-                                </div>
-                            </div>-->
-                            <!--end col-->
                             <div class="col-xxl-2 col-sm-4">
                                 <div>
-                                    <select class="form-control" data-choices data-choices-search-false
+                                    <select class="form-select" data-choices data-choices-search-false
                                         name="choices-single-default" id="cmbnivel" wire:model="filters.nivel">
                                         <option value="0" selected>All</option>
                                          @foreach ($tblsuperior as $record)                                    
@@ -50,7 +38,7 @@
                             <!--end col-->
                             <div class="col-xxl-2 col-sm-4">
                                 <div>
-                                    <select class="form-control" data-choices data-choices-search-false
+                                    <select class="form-select" data-choices data-choices-search-false
                                         name="choices-single-default" id="cmbestado" wire:model="filters.estado">
                                         <option value="">Select Estatus</option>
                                         <option value="all" selected>All</option>
@@ -62,9 +50,9 @@
                             <!--end col-->
                             <div class="col-xxl-1 col-sm-4">
                                 <div>
-                                    <button type="button" class="btn btn-primary w-100" onclick="SearchData();"> <i
+                                    <button type="button" class="btn btn-primary w-100" wire:click="resetFilter();"> <i
                                             class="ri-equalizer-fill me-1 align-bottom"></i>
-                                        Filters
+                                        Todos
                                     </button>
                                 </div>
                             </div>
@@ -229,9 +217,9 @@
                                         <div class="mb-3">
                                             <label for="record.superior" class="form-label">Nivel Superior</label>
                                             @if($showEditModal)
-                                                <select type="select" class="form-control" data-trigger name="record.superior" wire:model.defer="record.superior" disabled>
+                                                <select type="select" class="form-select" data-trigger name="record.superior" wire:model.defer="record.superior" disabled>
                                             @else
-                                                <select type="select" class="form-control" data-trigger name="record.superior" wire:model.defer="record.superior">
+                                                <select type="select" class="form-select" data-trigger name="record.superior" wire:model.defer="record.superior">
                                             @endif
                                                 <option value="0">--Select Nivel Superior--</option>
                                                 @foreach ($tblrecords as $record)
@@ -239,31 +227,14 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        
-                                        <!--<div class="mb-3">
-                                            <label for="codigo" class="form-label">Código</label>
-                                            <input type="text" value="{{$codigo}}" class="form-control" name="codigo"
-                                                placeholder="Enter name" required />
-                                        </div>-->
-
                                         <div class="mb-3">
                                             <label for="record.descripcion" class="form-label">Descripción</label>
                                             <input type="text" wire:model.defer="record.descripcion" class="form-control" name="record.descripcion"
                                                 placeholder="Enter name" required />
                                         </div>
-
-
-                                        <!--<div class="mb-3">
-                                            <label for="date-field" class="form-label">Order
-                                                Date</label>
-                                            <input type="date" id="date-field" class="form-control"
-                                                data-provider="flatpickr" data-date-format="d M, Y" data-enable-time
-                                                required placeholder="Select date" />
-                                        </div>-->
-
                                         <div>
                                             <label for="record.estado" class="form-label">Status</label>
-                                                <select class="form-control" data-trigger name="record.estado" wire:model.defer="record.estado">
+                                                <select class="form-select" data-trigger name="record.estado" wire:model.defer="record.estado">
                                                 <option value="A">Activo</option>
                                                 <option value="I">Inactivo</option>
                                                 <option value="E">Eliminado</option>
@@ -272,8 +243,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <div class="hstack gap-2 justify-content-end">
-                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success" id="add-btn">Save</button>
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-success" id="add-btn">Grabar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -290,16 +261,15 @@
                                         colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px">
                                     </lord-icon>
                                     <div class="mt-4 text-center">
-                                        <h4>You are about to delete the record ? {{ $selectId }}</h4>
-                                        <p class="text-muted fs-15 mb-4">Deleting the record will remove
-                                            all of
-                                            your information from our database.</p>
+                                        <h4>¿Está a punto de inactivar el registro? {{ $selectValue }}</h4>
+                                        <p class="text-muted fs-15 mb-4">Inactivar el registro afectará toda su 
+                                        información de nuestra base de datos.</p>
                                         <div class="hstack gap-2 justify-content-center remove">
                                             <button class="btn btn-link link-success fw-medium text-decoration-none"
                                                 data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>
-                                                Close</button>
-                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Yes,
-                                                Delete It</button>
+                                                Cerrar </button>
+                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Si,
+                                                Inactivar</button>
                                         </div>
                                     </div>
                                 </div>

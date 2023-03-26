@@ -5,10 +5,10 @@
             <div class="card" id="orderList">
                 <div class="card-header  border-0">
                     <div class="d-flex align-items-center">
-                        <h5 class="card-title mb-0 flex-grow-1">Registros </h5>
+                        <h5 class="card-title mb-0 flex-grow-1"> Listado de Rubros - Nomina </h5>
                         <div class="flex-shrink-0">
                             <button type="button" wire:click.prevent="add()" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"
-                                data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Create
+                                data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Agregar
                             </button>
                         </div>
                     </div>
@@ -19,22 +19,18 @@
                             <div class="col-xxl-5 col-sm-6">
                                 <div class="search-box">
                                     <input type="text" class="form-control search"
-                                        placeholder="Search for order ID, customer, order status or something...">
+                                        placeholder="Buscar por descripción..." wire:model="filters.descripcion">
                                     <i class="ri-search-line search-icon"></i>
                                 </div>
                             </div>
                             <div class="col-xxl-2 col-sm-4">
                                 <div>
                                     <select class="form-control" data-choices data-choices-search-false
-                                        name="choices-single-default" id="idStatus">
-                                        <option value="">Status</option>
-                                        <option value="all" selected>All</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Inprogress">Inprogress</option>
-                                        <option value="Cancelled">Cancelled</option>
-                                        <option value="Pickups">Pickups</option>
-                                        <option value="Returns">Returns</option>
-                                        <option value="Delivered">Delivered</option>
+                                        name="choices-single-default" id="idRegistro" wire:model="filters.registro">
+                                        <option value="">Todos</option>
+                                        <option value="NO">Planilla</option>
+                                        <option value="CA">Calculo Automatico</option>
+                                        <option value="PR">Prestamo</option>
                                     </select>
                                 </div>
                             </div>
@@ -42,22 +38,19 @@
                             <div class="col-xxl-2 col-sm-4">
                                 <div>
                                     <select class="form-control" data-choices data-choices-search-false
-                                        name="choices-single-default" id="idPayment">
-                                        <option value="">Select Payment</option>
-                                        <option value="all" selected>All</option>
-                                        <option value="Mastercard">Mastercard</option>
-                                        <option value="Paypal">Paypal</option>
-                                        <option value="Visa">Visa</option>
-                                        <option value="COD">COD</option>
+                                        name="choices-single-default" id="idStatus" wire:model="filters.estado">
+                                        <option value="">Todos</option>
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
                                     </select>
                                 </div>
                             </div>
                             <!--end col-->
                             <div class="col-xxl-1 col-sm-4">
                                 <div>
-                                    <button type="button" class="btn btn-primary w-100" onclick="SearchData();"> <i
+                                    <button type="button" class="btn btn-primary w-100" wire:click="resetFilter();"> <i
                                             class="ri-equalizer-fill me-1 align-bottom"></i>
-                                        Filters
+                                        Todos
                                     </button>
                                 </div>
                             </div>
@@ -159,7 +152,7 @@
                     </div>
 
                     <!-- Modal -->
-                    <div wire.ignore.self class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true" wire:model='selectId'>
+                    <div wire.ignore.self class="modal fade flip" id="deleteRecord" tabindex="-1" aria-hidden="true" wire:model='selectId'>
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-body p-5 text-center">
@@ -167,16 +160,15 @@
                                         colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px">
                                     </lord-icon>
                                     <div class="mt-4 text-center">
-                                        <h4>You are about to delete the record ? {{ $selectId }}</h4>
-                                        <p class="text-muted fs-15 mb-4">Deleting the record will remove
-                                            all of
-                                            your information from our database.</p>
+                                        <h4>¿Está a punto de inactivar el registro? {{ $selectValue }}</h4>
+                                        <p class="text-muted fs-15 mb-4">Inactivar el registro afectará toda su 
+                                        información de nuestra base de datos.</p>
                                         <div class="hstack gap-2 justify-content-center remove">
                                             <button class="btn btn-link link-success fw-medium text-decoration-none"
                                                 data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>
-                                                Close</button>
-                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Yes,
-                                                Delete It</button>
+                                                Cerrar </button>
+                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Si,
+                                                Inactivar</button>
                                         </div>
                                     </div>
                                 </div>

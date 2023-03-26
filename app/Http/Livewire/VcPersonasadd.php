@@ -14,8 +14,6 @@ class VcPersonasadd extends Component
 
     public function mount($id){
         
-        dd($id);
-
         if ($id!=""){
             $this->personaId = $id;
             $this->loadData();

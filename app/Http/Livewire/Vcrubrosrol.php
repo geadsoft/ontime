@@ -11,12 +11,27 @@ class Vcrubrosrol extends Component
     use WithPagination;
 
     public $showEditModal = false;
-    public $selectId;
+    public $selectId,$selectValue;
     public $record;
+    public $filters = [
+        'estado' => 'A',
+        'descripcion' => '',
+        'registro' => '',
+    ];
 
     public function render()
     {        
-        $tblrecords = TmRubrosrol::paginate(10);
+        $tblrecords = TmRubrosrol::query()
+        ->when($this->filters['descripcion'],function($query){
+            return $query->where('descripcion','like','%'.$this->filters['descripcion'].'%');
+        })
+        ->when($this->filters['registro'],function($query){
+            return $query->where('registro',$this->filters['registro']);
+        })
+        ->when($this->filters['estado'],function($query){
+            return $query->where('estado',$this->filters['estado']);
+        })
+        ->paginate(10);
 
         return view('livewire.Vcrubrosrol',[
             'tblrecords' => $tblrecords
@@ -39,14 +54,18 @@ class Vcrubrosrol extends Component
         $this->record  = $tblrecords->toArray();
        
         $this->selectId = $this -> record['id'];
-        $this->dispatchBrowserEvent('show-form');
 
+        $this->dispatchBrowserEvent('show-form');
+        
     }
 
     public function delete( $id ){
         
- 
         $this->selectId = $id;
+        $record = TmRubrosrol::find($id);
+
+        $this->selectValue = $record['descripcion'];
+
         $this->dispatchBrowserEvent('show-delete');
 
     }
@@ -77,7 +96,8 @@ class Vcrubrosrol extends Component
             'estado' => $this -> record['estado'],
         ]);
 
-        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);  
+        $this->dispatchBrowserEvent('hide-form');  
+        $this->dispatchBrowserEvent('msg-grabar');
         
     }
 
@@ -112,12 +132,27 @@ class Vcrubrosrol extends Component
             
         }
       
-        $this->dispatchBrowserEvent('hide-form', ['message'=> 'added successfully!']);
+        $this->dispatchBrowserEvent('hide-form');
+        $this->dispatchBrowserEvent('msg-actualizar');
         
     }
 
     public function deleteData(){
-        TmRubrosrol::find($this->selectId)->delete();
+
+        $record = TmRubrosrol::find($this->selectId);
+        $record->update([
+            'estado' => 'I',
+        ]);
+
         $this->dispatchBrowserEvent('hide-delete');
     }
+
+    public function resetFilter(){
+
+        $this->filters['estado'] = 'A';
+        $this->filters['registro'] = '';
+        $this->filters['descripcion'] = '';
+
+    }
+
 }

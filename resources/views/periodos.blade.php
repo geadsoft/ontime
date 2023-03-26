@@ -12,7 +12,7 @@
             Administrar
         @endslot
         @slot('title')
-            Periodos Tipo de Rol
+            Registrar Periodos del Rol
         @endslot
     @endcomponent
 
@@ -49,7 +49,7 @@
         })
 
         window.addEventListener('msg-grabar', event => {
-            swal("Good job!", "Record recorded successfully!", "success");
+            swal("¡Grabado!", "Registro ha sido grabado exitosamente!", "success");
         })
 
         window.addEventListener('get-date', event => {

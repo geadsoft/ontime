@@ -8,7 +8,7 @@
                             <h5 class="card-title mb-0 flex-grow-1">Listado de Personal</h5>
                             <div class="flex-shrink-0">
                                 <button type="button" wire:click.prevent="add()" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"
-                                    data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Add New Staff
+                                    data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Agregar
                                 </button>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                         <div class="col-md-4">
                             <div class="search-box">
                                 <input type="text" class="form-control search"
-                                    placeholder="Search for contact..." wire:model="filters.srv_nombre">
+                                    placeholder="Buscar por apellidos o nombres..." wire:model="filters.srv_nombre">
                                 <i class="ri-search-line search-icon"></i>
                             </div>
                         </div>
@@ -32,15 +32,6 @@
                                 <button class="btn btn-soft-secondary">PDF</button>
                                 <button class="btn btn-soft-secondary">Excel</button>
                                 <button class="btn btn-soft-secondary">Print</button>
-                                <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
-                                    aria-expanded="false" class="btn btn-soft-info"><i
-                                        class="ri-more-2-fill"></i></button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                    <li><a class="dropdown-item" href="#">All</a></li>
-                                    <li><a class="dropdown-item" href="#">Last Week</a></li>
-                                    <li><a class="dropdown-item" href="#">Last Month</a></li>
-                                    <li><a class="dropdown-item" href="#">Last Year</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -48,9 +39,9 @@
                 <div class="card-body">
                     <div>
                         <div class="table-responsive table-card mb-3">
-                            <table class="table align-middle table-nowrap mb-0" id="customerTable">
-                                <thead class="table-light">
-                                    <tr>
+                            <table class="table table-nowrap align-middle mb-0" id="customerTable">
+                                <thead class="text-muted table-light">
+                                    <tr class="text-uppercase">
                                         <th scope="col" style="width: 50px;">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox"
@@ -64,7 +55,7 @@
                                         <th class="sort" data-sort="lead_score" scope="col">Estado Civil</th>
                                         <th class="sort" data-sort="tags" scope="col">Telefono(s)</th>
                                         <th class="sort" data-sort="tags" scope="col">Estado</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list form-check-all">
@@ -90,11 +81,11 @@
                                         </td>
                                         <td>
                                             <ul class="list-inline hstack gap-2 mb-0">
-                                                <li class="list-inline-item" data-bs-toggle="tooltip"
+                                                <!--<li class="list-inline-item" data-bs-toggle="tooltip"
                                                     data-bs-trigger="hover" data-bs-placement="top" title="View">
                                                     <a href="" wire:click.prevent="view({{ $record->id }})" class="view-item-btn"><i
                                                             class="ri-eye-fill align-bottom text-muted"></i></a>
-                                                </li>
+                                                </li>-->
                                                 <li class="list-inline-item" data-bs-toggle="tooltip"
                                                     data-bs-trigger="hover" data-bs-placement="top" title="Edit">
                                                     <a href="" class="edit-item-btn" wire:click.prevent="edit({{ $record->id }})"><i
@@ -127,44 +118,26 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="d-flex justify-content-end mt-3">
-                            <div class="pagination-wrap hstack gap-2">
-                                <a class="page-item pagination-prev disabled" href="#">
-                                    Previous
-                                </a>
-                                <ul class="pagination listjs-pagination mb-0"></ul>
-                                <a class="page-item pagination-next" href="#">
-                                    Next
-                                </a>
-                            </div>
-                        </div>-->
                         {{$tblrecords->links('')}}
                     </div>
                     
-                    <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1"
-                        aria-hidden="true">
+                    <div wire.ignore.self class="modal fade flip" id="deleteRecord" tabindex="-1" aria-hidden="true" wire:model='selectId'>
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close" id="btn-close"></button>
-                                </div>
                                 <div class="modal-body p-5 text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json"
-                                        trigger="loop" colors="primary:#405189,secondary:#f06548"
-                                        style="width:90px;height:90px"></lord-icon>
+                                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                                        colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px">
+                                    </lord-icon>
                                     <div class="mt-4 text-center">
-                                        <h4 class="fs-semibold">You are about to delete a contact ?</h4>
-                                        <p class="text-muted fs-14 mb-4 pt-1">Deleting your contact will
-                                            remove all of your information from our database.</p>
+                                        <h4>¿Está a punto de inactivar el registro? {{ $selectValue }}</h4>
+                                        <p class="text-muted fs-15 mb-4">Inactivar el registro afectará toda su 
+                                        información de nuestra base de datos.</p>
                                         <div class="hstack gap-2 justify-content-center remove">
-                                            <button
-                                                class="btn btn-link link-success fw-medium text-decoration-none"
-                                                data-bs-dismiss="modal"><i
-                                                    class="ri-close-line me-1 align-middle"></i>
-                                                Close</button>
-                                            <button class="btn btn-danger" id="delete-record">Yes,
-                                                Delete It!!</button>
+                                            <button class="btn btn-link link-success fw-medium text-decoration-none"
+                                                data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>
+                                                Cerrar </button>
+                                            <button class="btn btn-danger" id="delete-record"  wire:click="deleteData()"> Si,
+                                                Inactivar</button>
                                         </div>
                                     </div>
                                 </div>

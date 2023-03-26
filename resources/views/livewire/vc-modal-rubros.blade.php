@@ -1,9 +1,8 @@
 <div>
     <div class="mb-3">
-        <p class="fw-medium mb-1"><span>Nombre: </span><span class="text-muted mb-1">(123) 456-7890</span></p>
-        <p class="fw-medium mb-1"><span>Cédula: </span><span class="text-muted mb-1">12345678</span></p>
-        <p class="fw-medium mb-1"><span>Fecha Ingreso: </span><span class="text-muted mb-1">01/05/2019</span></p>
-        <p class="fw-medium mb-1"><span>Tipo Contrato: </span><span class="text-muted mb-1">Afiliado</span></p>
+        <p class="fw-medium mb-1"><span>Nombre: </span><span class="text-muted mb-1">{{$personal['apellidos']}} {{$personal['nombres']}}</span></p>
+        <p class="fw-medium mb-1"><span>Cédula: </span><span class="text-muted mb-1">{{$personal['nui']}}</span></p>
+        <p class="fw-medium mb-1"><span>Fecha Ingreso: </span><span class="text-muted mb-1">{{$personal['fecha_ingreso']}}</span></p>
     </div>
     <hr>
         @if ($showEdit)
@@ -60,14 +59,11 @@
                                 {{number_format($data['valor'],2)}} 
                             </td>
                             <td>
-                                <!--<li class="list-inline-item" data-bs-toggle="tooltip"
-                                    data-bs-trigger="hover" data-bs-placement="top" title="Eliminar">
-                                    <a class="text-danger d-inline-block remove-item-btn"
-                                        data-bs-toggle="modal" href="" wire:click.prevent="">
-                                        <i class="ri-delete-bin-5-fill fs-16"></i>
-                                    </a>
-                                </li>-->
-                                <a href="" wire:click.prevent="delete({{ $data['id'] }})" id="delete" class ="text-danger d-inline-block"><i class="ri-delete-bin-5-fill fs-16"></i></a>
+                                @if ($showEdit)
+                                    <a href="" wire:click.prevent="delete({{ $data['id'] }})" id="delete" class ="text-danger d-inline-block"><i class="ri-delete-bin-5-fill fs-16"></i></a>
+                                @else
+                                    <a href="" wire:click.prevent="" id="delete" class ="text-danger d-inline-block" disabled><i class="ri-delete-bin-5-fill fs-16"></i></a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

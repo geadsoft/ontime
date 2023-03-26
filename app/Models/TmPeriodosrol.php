@@ -12,13 +12,14 @@ class TmPeriodosrol extends Model
     protected $fillable = [
         'tiporol_id',
         'mes',
-        'tiempo',
+        'remuneracion',
         'fechaini',
         'fechafin',
         'procesado',
         'aprobado',
         'cerrado',
         'usuario',
+        'estado',
     ];
 
     public function tiporol(){

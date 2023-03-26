@@ -1,4 +1,5 @@
 <div>
+    <form id="addrubro-form" autocomplete="off" class="needs-validation" wire:submit.prevent="createData()">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -6,7 +7,7 @@
                     <div class="row g-3">
                         <div class="col-md-3">
                             <label for="cmbtiporol" class="form-label">Periodo</label>
-                            <select type="select" class="form-select" data-trigger id="cmbtiporol" wire:model.defer="periodoId">
+                            <select type="select" class="form-select" data-trigger id="cmbtiporol" wire:model.defer="periodoId" required>
                                 <option value="">Ingrese tipo de rol</option>
                                 @foreach ($tblperiodos as $periodo)
                                     <option value="{{$periodo->id}}">{{$periodo->tiporol->descripcion}} {{date('d/m/Y', strtotime($periodo->fechaini))}} - {{date('d/m/Y', strtotime($periodo->fechafin))}}</option>
@@ -21,11 +22,11 @@
                         </div>                        
                         <div class="col-md-auto ms-auto">
                             <div class="hstack text-nowrap gap-2">
-                                <button type="button" wire:click.prevent="add()" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"
-                                    data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Add New Staff
+                                <button type="button" wire:click.prevent="add()" class="btn btn-danger add-btn" data-bs-toggle="modal" id="create-btn"
+                                    data-bs-target=""><i class="ri-file-copy-fill align-bottom me-1"></i> Ver Rubros
                                 </button>
-                                <button type="button" wire:click.prevent="createData()" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"
-                                    data-bs-target=""><i class="ri-add-line align-bottom me-1"></i> Grabar
+                                <button type="sumit" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"
+                                    data-bs-target=""><i class="ri-save-3-fill align-bottom me-1"></i> Grabar
                                 </button>
                             </div>
                         </div>
@@ -37,15 +38,7 @@
         <div class="col-xxl-12">
             <div class="card" id="contactList">
                 <div class="card-header">
-                    <div class="row g-3">
-                        <div class="col-md-4">
-                            <div class="search-box">
-                                <input type="text" class="form-control search"
-                                    placeholder="Search for contact..." wire:model="">
-                                <i class="ri-search-line search-icon"></i>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="card-body">
                     <div>
@@ -53,6 +46,7 @@
                             <div style="overflow-x:auto;">
                             <table class="table table-nowrap align-middle" style="width:100%">
                                 <thead class="table-light">
+                                    
                                     <tr>
                                         <th scope="col" style="width: 50px;">
                                             <div class="form-check">
@@ -84,7 +78,7 @@
 
                                                 @if ($col>=3)
                                                     <td>
-                                                    <input type="number" style="width:80px" class="form-control form-control-sm product-price"
+                                                    <input type="number" step="0.01"  style="width:80px" class="form-control form-control-sm product-price"
                                                      id="col-{{$col}}" wire:model="tblrecords.{{$fil}}.{{$col}}" />
                                                     </td>
                                                 @else
@@ -114,66 +108,8 @@
                                 </tbody>
                             </table>
                             </div>
-                            
-                            <div class="noresult" style="display: none">
-                                <div class="text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json"
-                                        trigger="loop" colors="primary:#121331,secondary:#08a88a"
-                                        style="width:75px;height:75px">
-                                    </lord-icon>
-                                    <h5 class="mt-2">Sorry! No Result Found</h5>
-                                    <p class="text-muted mb-0">We've searched more than 150+ contacts We
-                                        did not find any
-                                        contacts for you search.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--<div class="d-flex justify-content-end mt-3">
-                            <div class="pagination-wrap hstack gap-2">
-                                <a class="page-item pagination-prev disabled" href="#">
-                                    Previous
-                                </a>
-                                <ul class="pagination listjs-pagination mb-0"></ul>
-                                <a class="page-item pagination-next" href="#">
-                                    Next
-                                </a>
-                            </div>
-                        </div>-->
-                        
+                        </div>                 
                     </div>
-                    
-                    <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close" id="btn-close"></button>
-                                </div>
-                                <div class="modal-body p-5 text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json"
-                                        trigger="loop" colors="primary:#405189,secondary:#f06548"
-                                        style="width:90px;height:90px"></lord-icon>
-                                    <div class="mt-4 text-center">
-                                        <h4 class="fs-semibold">You are about to delete a contact ?</h4>
-                                        <p class="text-muted fs-14 mb-4 pt-1">Deleting your contact will
-                                            remove all of your information from our database.</p>
-                                        <div class="hstack gap-2 justify-content-center remove">
-                                            <button
-                                                class="btn btn-link link-success fw-medium text-decoration-none"
-                                                data-bs-dismiss="modal"><i
-                                                    class="ri-close-line me-1 align-middle"></i>
-                                                Close</button>
-                                            <button class="btn btn-danger" id="delete-record">Yes,
-                                                Delete It!!</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end delete modal -->
-
                 </div>
             </div>
             <!--end card-->
@@ -183,5 +119,6 @@
         <!--end col-->
     </div>
     <!--end row-->
+    </form>
 </div>
 

@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class VcPlanillaRubros extends Component
 {
-    public $periodoId, $totpersona;
+    public $tiporolId, $periodoId, $totpersona;
     public $tblrecords=[];
     public $rubros=[];
     public $personas=[];
@@ -26,9 +26,10 @@ class VcPlanillaRubros extends Component
         $ldate = date('Y-m-d H:i:s');
         $this->fecha = date('Y-m-d',strtotime($ldate));
         
-        $tblperiodos = TmPeriodosrol::where('procesado',0)
-        ->where('tiempo','M')
+        $tblperiodos = TmPeriodosrol::where('aprobado',0)
+        ->where('remuneracion','M')
         ->get();
+
         $this->loadRubros();
 
         return view('livewire.vc-planilla-rubros',[
@@ -48,6 +49,8 @@ class VcPlanillaRubros extends Component
         ->where('tm_periodosrols.id',$this->periodoId)
         ->first();
 
+        $this->tiporolId = $tiporol['tiporol_id'];
+         
         $this-> personas = TmPersonas::query()
         ->join("tm_contratos as c","c.persona_id","=","tm_personas.id")
         ->where('tipoempleado_id',$tiporol->tipoempleado_id)
@@ -55,17 +58,6 @@ class VcPlanillaRubros extends Component
         ->where('tm_personas.estado','A')
         ->orderBy('tm_personas.apellidos','asc')
         ->get();
-
-        /*$this-> personas = TmPeriodosrol::query()
-        ->join("tm_tiposrols as t","t.id","=","tm_periodosrols.tiporol_id")
-        ->join("tm_contratos as c",function ($join){
-            $join->on('c.tipoempleado_id','=','t.tipoempleado_id')
-            ->andOn('c.tipocontrato_id','=','t.tipocontrato_id');
-        })
-        ->join("tm_personas as p","p.id","=","c.persona_id")
-        ->where('tm_periodosrols.id',$this->periodoId)
-        ->where('p.estado','A')
-        ->get();*/
         
         $campo="";
         $this->totpersona = count($this->personas);
@@ -80,8 +72,9 @@ class VcPlanillaRubros extends Component
             ];
             array_push($this->tblrecords,$recno);
         }
+       
         $this->row = [$campo];
-        
+               
         foreach ($this-> personas as $index => $data)
         {
             $this->tblrecords[$index][0] = $data->persona_id;
@@ -96,12 +89,12 @@ class VcPlanillaRubros extends Component
             }
             
         }
+
         $this->row[0] = "";
         $this->row[1] = "";
         $this->row[2] = "";
-
-
-             
+        
+        $this->loadPlanilla();
     }
 
     public function loadRubros(){
@@ -121,8 +114,40 @@ class VcPlanillaRubros extends Component
 
     }
 
+    public function loadPlanilla(){
+
+        foreach ($this-> personas as $index => $data)
+        {
+            $planilla = TdPlanillaRubros::where([
+                ['persona_id',$data->persona_id],
+                ['tiposrol_id',$this->tiporolId],
+                ['periodosrol_id',$this->periodoId],
+            ])->get();
+            
+            foreach ($planilla as $index2 => $recno)
+            {
+                $this->tblrecords[$index][$index2+3] = $recno['valor'];
+            }
+            
+        }
+
+    }
+
     public function createData(){
+
+        $this ->validate([
+            'periodoId' => 'required',
+            'fecha' => 'required',
+        ]);
         
+        if (empty($this->tblrecords)){
+
+            $this->periodoId = '';
+            $this->dispatchBrowserEvent('msg-alerta');
+            return;
+            
+        }
+
         $tiporol = TmPeriodosrol::find($this->periodoId);
         $this->loadRubros();
 
@@ -144,6 +169,7 @@ class VcPlanillaRubros extends Component
             for ($col=0;$col<count($this->rubros);$col++){
 
                     $dataRow['fecha'] = $this->fecha;
+                    $dataRow['tipo'] = 'P';
                     $dataRow['tiposrol_id'] = $tiporol['tiporol_id'];
                     $dataRow['periodosrol_id'] = $this->periodoId;
                     $dataRow['persona_id'] = $data[0];
@@ -156,11 +182,8 @@ class VcPlanillaRubros extends Component
             }
                     
         }
-
-        //dd($this->detalle);
         
-        TdPlanillaRubros::insert($this->detalle);
-        
+        TdPlanillaRubros::insert($this->detalle);       
         $this->dispatchBrowserEvent('msg-grabar'); 
 
     }
@@ -168,3 +191,5 @@ class VcPlanillaRubros extends Component
    
 
 }
+
+?>

@@ -24,7 +24,7 @@
     <script src="{{ URL::asset('assets/libs/list.pagination.js/list.pagination.js.min.js') }}"></script>-->
 
     <!--ecommerce-customer init js -->
-    <script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 
     <script>
@@ -43,6 +43,14 @@
 
         window.addEventListener('hide-load', event => {
             $('#loadRecordModal').modal('hide');
+        })
+
+        window.addEventListener('msg-grabar', event => {
+            swal("¡Grabado!", "¡Registros han sido grabado exitosamente!", "success");
+        })
+
+        window.addEventListener('msg-alerta', event => {
+            swal("¡Error!", "!Usted no ha seleccionado el periodo!", "warning");
         })
 
     </script>

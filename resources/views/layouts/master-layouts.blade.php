@@ -36,7 +36,7 @@
     <!-- END wrapper -->
 
     <!-- Right Sidebar -->
-    @include('layouts.customizer')
+    <!--@include('layouts.customizer')-->
     <!-- END Right Sidebar -->
 
     @include('layouts.vendor-scripts')

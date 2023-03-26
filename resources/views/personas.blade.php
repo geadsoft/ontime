@@ -12,7 +12,7 @@
             Ficha
         @endslot
         @slot('title')
-            Personas
+            Registrar Personal
         @endslot
     @endcomponent
 
@@ -31,11 +31,11 @@
     <script>
     
         window.addEventListener('show-delete', event => {
-            $('#deleteOrder').modal('show');
+            $('#deleteRecord').modal('show');
         })
 
         window.addEventListener('hide-delete', event => {
-            $('#deleteOrder').modal('hide');
+            $('#deleteRecord').modal('hide');
         })
 
     </script>
