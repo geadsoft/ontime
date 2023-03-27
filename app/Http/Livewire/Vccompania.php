@@ -27,7 +27,7 @@ class Vccompania extends Component
         $this->view = $views;
         
 
-        return view('livewire.vccompania',[
+        return view('livewire.vc-compania',[
             'tblrecords' => $tblrecords,
         ]);
     }

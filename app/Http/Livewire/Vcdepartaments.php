@@ -19,7 +19,7 @@ class Vcdepartaments extends Component
         $tblareas = Tmarea::all();
         
         $tblrecords = TmDepartament::all();
-        return view('livewire.Vcdepartaments',[
+        return view('livewire.vc-departaments',[
             'tblrecords' => $tblrecords,
             'tblareas' => $tblareas
         ]);

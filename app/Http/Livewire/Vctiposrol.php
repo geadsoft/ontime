@@ -49,7 +49,7 @@ class Vctiposrol extends Component
         $tblempleados =  TmCatalogogeneral::where('superior',1)->orderBy('codigo','asc')->get();
         $tblcontratos =  TmCatalogogeneral::where('superior',2)->orderBy('codigo','asc')->get();
 
-        return view('livewire.Vctiposrol',[
+        return view('livewire.vc-tiposrol',[
             'tblrecords' => $tblrecords,
             'tblempleados' => $tblempleados,
             'tblcontratos' => $tblcontratos

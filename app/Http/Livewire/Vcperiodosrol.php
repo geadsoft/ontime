@@ -82,7 +82,7 @@ class Vcperiodosrol extends Component
         ->paginate(10);
 
 
-        return view('livewire.Vcperiodosrol',[
+        return view('livewire.vc-periodosrol',[
             'tblrecords' => $tblrecords,
             'tbltiporols' => $tbltiporols,
             'periodos' => $periodos,
