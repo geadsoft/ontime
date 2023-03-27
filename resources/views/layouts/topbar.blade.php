@@ -42,7 +42,7 @@
                             id="search-close-options"></span>-->
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <a href="index" class="d-inline-block auth-logo">
-                                <img src="{{ URL::asset('assets/images/ontime2.png')}}" alt="" height="50">
+                                <img src="{{ URL::asset('assets/images/companies/logocia.png')}}" alt="" height="70">
                             </a>
                         </div> <br>
                     </div>
