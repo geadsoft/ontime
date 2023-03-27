@@ -33,7 +33,7 @@ class Vcrubrosrol extends Component
         })
         ->paginate(10);
 
-        return view('livewire.Vcrubrosrol',[
+        return view('livewire.vc-rubrosrol',[
             'tblrecords' => $tblrecords
         ]);
     }

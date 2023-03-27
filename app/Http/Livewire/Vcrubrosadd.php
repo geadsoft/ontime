@@ -56,7 +56,7 @@ class Vcrubrosadd extends Component
             
         }
         
-        return view('livewire.vcrubrosadd',[
+        return view('livewire.vc-rubrosadd',[
             'record' => $this->record,
             'tblvariables' => $tblvariables,
             'tblrubros' => $tblrubros,
