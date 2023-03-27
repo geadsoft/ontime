@@ -104,7 +104,7 @@
                                                 <i data-feather="lock"></i>
                                             </div>
                                         </div>
-                                        <div class=" mb-4">
+                                        <!--<div class=" mb-4">
                                             <input type="file" class="form-control @error('avatar') is-invalid @enderror"
                                                 name="avatar" id="input-avatar" required>
                                             @error('avatar')
@@ -115,7 +115,7 @@
                                             <div class="">
                                                 <i data-feather="file"></i>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                         <!--<div class="mb-4">
                                             <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the
