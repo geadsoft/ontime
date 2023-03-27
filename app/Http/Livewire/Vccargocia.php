@@ -38,7 +38,7 @@ class Vccargocia extends Component
         ->orderByRaw('case when cargo_id = 0 then id else cargo_id end, cargo_id')
         ->paginate(10);
 
-        return view('livewire.vccargocia',[
+        return view('livewire.vc-cargocia',[
             'tblrecords'  => $tblrecords,
             'tblsuperior' => $tblsuperior, 
         ]);

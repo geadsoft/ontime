@@ -43,7 +43,7 @@ class Vccatalogogeneral extends Component
         ->orderBy('root', 'asc')
         ->paginate(10);  
         
-        return view('livewire.Vccatalogogeneral',[
+        return view('livewire.vc-catalogogeneral',[
             'tblrecords'  => $this->tblrecords,
             'tblsuperior' => $this->tblsuperior,
         ]);
