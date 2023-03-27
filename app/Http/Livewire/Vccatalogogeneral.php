@@ -13,6 +13,7 @@ class Vccatalogogeneral extends Component
     public $selectId, $selectValue;
     public $record;
     public $codigo;
+    public $tblsuperior,$tblrecords;
 
     public $sortDirection = 'desc';
     public $sortData = 'codigo';
@@ -27,8 +28,8 @@ class Vccatalogogeneral extends Component
     
     public function render()
     {
-        $tblsuperior = TmCatalogogeneral::where('superior',0)->get();
-        $tblrecords  = TmCatalogogeneral::query()
+        $this->tblsuperior = TmCatalogogeneral::where('superior',0)->get();
+        $this->tblrecords  = TmCatalogogeneral::query()
         ->when($this->filters['descripcion'],function($query){
             return $query->where('descripcion','like','%'.$this->filters['descripcion'].'%');
         })
