@@ -40,7 +40,7 @@ class Vcareas extends Component
         ->orderByRaw('case when area_id is null then id else area_id end, area_id')
         ->paginate(10);
 
-        return view('livewire.Vcareas',[
+        return view('livewire.vc-areas',[
             'tblrecords' => $tblrecords,
             'tblareas' => $tblareas,
         ]);
