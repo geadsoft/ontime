@@ -44,8 +44,8 @@ class Vccatalogogeneral extends Component
         ->paginate(10);  
         
         return view('livewire.Vccatalogogeneral',[
-            'tblrecords'  => $tblrecords,
-            'tblsuperior' => $tblsuperior,
+            'tblrecords'  => $this->tblrecords,
+            'tblsuperior' => $this->tblsuperior,
         ]);
 
     }
