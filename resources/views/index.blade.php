@@ -217,7 +217,43 @@
                             </div>
                         </div><!-- end card header -->
 
-                        
+                        <div class="card-header p-0 border-0 bg-soft-light">
+                            <div class="row g-0 text-center">
+                                <!--<div class="col-6 col-sm-3">
+                                    <div class="p-3 border border-dashed border-start-0">
+                                        <h5 class="mb-1"><span class="counter-value"
+                                                data-target="7585">0</span></h5>
+                                        <p class="text-muted mb-0">Orders</p>
+                                    </div>
+                                </div>-->
+                                <!--end col-->
+                                <!--<div class="col-6 col-sm-3">
+                                    <div class="p-3 border border-dashed border-start-0">
+                                        <h5 class="mb-1">$<span class="counter-value"
+                                                data-target="22.89">0</span>k</h5>
+                                        <p class="text-muted mb-0">Earnings</p>
+                                    </div>
+                                </div>-->
+                                <!--end col-->
+                                <!--<div class="col-6 col-sm-3">
+                                    <div class="p-3 border border-dashed border-start-0">
+                                        <h5 class="mb-1"><span class="counter-value"
+                                                data-target="367">0</span></h5>
+                                        <p class="text-muted mb-0">Refunds</p>
+                                    </div>
+                                </div>-->
+                                <!--end col-->
+                                <!--<div class="col-6 col-sm-3">
+                                    <div
+                                        class="p-3 border border-dashed border-start-0 border-end-0">
+                                        <h5 class="mb-1 text-success"><span class="counter-value"
+                                                data-target="18.92">0</span>%</h5>
+                                        <p class="text-muted mb-0">Conversation Ratio</p>
+                                    </div>
+                                </div>-->
+                                <!--end col-->
+                            </div>
+                        </div><!-- end card header -->
 
                         <div class="card-body p-0 pb-2">
                             <div class="w-100">
