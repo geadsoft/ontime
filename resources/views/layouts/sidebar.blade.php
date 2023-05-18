@@ -188,6 +188,11 @@
 
                 <li class="menu-title"><i class="ri-more-fill"></i> <span>@lang('translation.setting')</span></li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="/setting/empresa">
+                        <i class="ri-soundcloud-line"></i> <span>Compañia</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="/setting/generalities">
                         <i class="las la-cog"></i> <span>@lang('translation.generalities')</span>
                     </a>

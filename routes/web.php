@@ -25,8 +25,8 @@ Route::get('/payroll/assign-rubros',[App\Http\Controllers\TmTiposrolRubrosContro
 Route::get('/payroll/planilla',[App\Http\Controllers\TdPlanillaController::class, 'index'])->name('index');
 Route::get('/payroll/rolpago',[App\Http\Controllers\TdRolPagosController::class, 'index'])->name('index');
 Route::get('/setting/generalities',[App\Http\Controllers\TmCatalogogeneralController::class, 'index'])->name('index');
+Route::get('/setting/empresa',[App\Http\Controllers\TmCompaniaController::class, 'index'])->name('index');
 Route::get('/form/charges',[App\Http\Controllers\TmCargociaController::class, 'index'])->name('index');
-Route::get('/empresa',[App\Http\Controllers\TmCompaniaController::class, 'index'])->name('index');
 Route::get('/form/periods',[App\Http\Controllers\TmPeriodosrolController::class, 'index'])->name('index');
 Route::get('/form/rubros',[App\Http\Controllers\TmRubrosrolController::class, 'index'])->name('index');
 Route::get('/form/rubros-add',[App\Http\Controllers\TmRubrosrolController::class, 'addrubros'])->name('addrubros');

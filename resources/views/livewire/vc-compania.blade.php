@@ -39,7 +39,7 @@
                                 <input type="text" class="form-control search" placeholder="Search for company...">
                                 <i class="ri-search-line search-icon"></i>
                             </div>
-                        </div>-->
+                        </div>
                         <div class="col-md-auto ms-auto">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="text-muted">Ordenar por: </span>
@@ -50,7 +50,7 @@
                                     <option value="location">Ubicación</option>
                                 </select>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="card-body">
@@ -196,11 +196,14 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                         id="close-modal"></button>
                                 </div>
+                                <div class="card-body checkout-tab">
                                 <form autocomplete="off" wire:submit.prevent="{{ $showEditModal ? 'updateData' : 'createData' }}">
+                                    
                                     <div class="modal-body">
                                         <input type="hidden" id="id-field" />
+
                                         <div class="row g-3">
-                                            <div class="col-lg-12">
+                                            <!--<div class="col-lg-12">
                                                 <div class="text-center">
                                                     <div class="position-relative d-inline-block">
                                                         <div class="position-absolute bottom-0 end-0">
@@ -221,100 +224,316 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <h5 class="fs-13 mt-3">Loco Compañia</h5>
-                                                </div>
-                                                <div>
-                                                    <label for="record.razonsocial"
-                                                        class="form-label">Razón Social</label>
-                                                    <input type="text" wire:model.defer="record.razonsocial"
-                                                        class="form-control"
-                                                        placeholder="Ingrese la Razón Social" required />
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div>
-                                                    <label for="record.nombrecomercial"
-                                                        class="form-label">Nombre Comercial</label>
-                                                    <input type="text" wire:model.defer="record.nombrecomercial"
-                                                        class="form-control"
-                                                        placeholder="Ingrese Nombre Comercial" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div>
-                                                    <label for="record.ruc" class="form-label">RUC</label>
-                                                    <input type="text" wire:model.defer="record.ruc" class="form-control"
-                                                        placeholder="Ingrese Ruc" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div>
-                                                    <label for="record.telefono" class="form-label">Teléfono</label>
-                                                    <input type="text" wire:model.defer="record.telefono" class="form-control"
-                                                        placeholder="Ingrese Teléfono" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div>
-                                                    <label for="record.provincia" class="form-label">Provincia</label>
-                                                    <input type="text"  wire:model.defer="record.provincia" class="form-control"
-                                                        placeholder="Ingrese Provincia" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div>
-                                                    <label for="record.ciudad" class="form-label">Ciudad</label>
-                                                    <input type="text" wire:model.defer="record.ciudad" class="form-control"
-                                                        placeholder="Ingrese ciudad" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div>
-                                                    <label for="record.canton" class="form-label">Cantón</label>
-                                                    <input type="text" wire:model.defer="record.canton" class="form-control"
-                                                        placeholder="Ingrese Cantón" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div>
-                                                    <label for="record.ubicacion" class="form-label">Ubicación</label>
-                                                    <input type="text" wire:model.defer="record.ubicacion" class="form-control"
-                                                        placeholder="Ingrese Ubicación" required />
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-lg-6">
-                                                <div>
-                                                    <label for="record.representante" class="form-label">Representante Legal</label>
-                                                    <input type="text" wire:model.defer="record.representante" class="form-control"
-                                                        placeholder="Ingrese Representante Legal" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div>
-                                                    <label for="record.identificacion" class="form-label">Identificación</label>
-                                                    <input type="text" wire:model.defer="record.identificacion" class="form-control"
-                                                        placeholder="Ingrese Identificación" required />
-                                                </div>
-                                            </div>
-                                                                                     
-                                            <div class="col-lg-6">
-                                                <div>
-                                                    <label for="record.website" class="form-label">Pagina Web</label>
-                                                    <input type="text" wire:model.defer="record.website"  class="form-control"
-                                                        placeholder="Ingrese Pagina Web" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div>
-                                                    <label for="record.email" class="form-label">Contacto Email</label>
-                                                    <input type="text" wire:model.defer="record.email" class="form-control"
-                                                        placeholder="Ingrese Mail" required />
-                                                </div>
-                                            </div>
-                                            
+                                                    <h5 class="fs-13 mt-3">Logo Compañia</h5>
+                                                </div>                                                
+                                            </div>-->
                                         </div>
+                                            <div class="card">
+                                                <div class="card-body checkout-tab">
+                                                    <div class="step-arrow-nav mt-n3 mx-n3 mb-3">
+                                                        <ul class="nav nav-pills nav-justified custom-nav nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                                                            <li class="nav-item" role="presentation">
+                                                                <button class="nav-link fs-15 p-3 active" id="pills-bill-info-tab" data-bs-toggle="pill"
+                                                                    data-bs-target="#pills-bill-info" type="button" role="tab"
+                                                                    aria-controls="pills-bill-info" aria-selected="true"><i
+                                                                        class=" ri-open-source-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
+                                                                        Empresa</button>
+                                                            </li>
+                                                            <li class="nav-item" role="presentation">
+                                                                <button class="nav-link fs-15 p-3" id="pills-bill-rrhh-tab" data-bs-toggle="pill"
+                                                                    data-bs-target="#pills-bill-rrhh" type="button" role="tab"
+                                                                    aria-controls="pills-bill-rrhh" aria-selected="false"><i
+                                                                        class="ri-user-2-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
+                                                                        RRHH</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade show active" id="pills-bill-info" role="tabpanel"
+                                                            aria-labelledby="pills-bill-info-tab">
+                                                            <div class="card-body row">
+                                                                <div class="col-lg- mb-3">
+                                                                    <label for="record.razonsocial" class="form-label">Razón Social</label>
+                                                                    <input type="text" wire:model.defer="record.razonsocial"
+                                                                        class="form-control"
+                                                                        placeholder="Ingrese la Razón Social" required />
+                                                                </div>
+                                                                <div class="col-lg-12 mb-3">
+                                                                    <div>
+                                                                        <label for="record.nombrecomercial"
+                                                                            class="form-label">Nombre Comercial</label>
+                                                                        <input type="text" wire:model.defer="record.nombrecomercial"
+                                                                            class="form-control"
+                                                                            placeholder="Ingrese Nombre Comercial" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 mb-3">
+                                                                    <div>
+                                                                        <label for="record.ruc" class="form-label">RUC</label>
+                                                                        <input type="text" wire:model.defer="record.ruc" class="form-control"
+                                                                            placeholder="Ingrese Ruc" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 mb-3">
+                                                                    <div>
+                                                                        <label for="record.telefono" class="form-label">Teléfono</label>
+                                                                        <input type="text" wire:model.defer="record.telefono" class="form-control"
+                                                                            placeholder="Ingrese Teléfono" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 mb-3">
+                                                                    <div>
+                                                                        <label for="record.provincia" class="form-label">Provincia</label>
+                                                                        <input type="text"  wire:model.defer="record.provincia" class="form-control"
+                                                                            placeholder="Ingrese Provincia" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 mb-3">
+                                                                    <div>
+                                                                        <label for="record.ciudad" class="form-label">Ciudad</label>
+                                                                        <input type="text" wire:model.defer="record.ciudad" class="form-control"
+                                                                            placeholder="Ingrese ciudad" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 mb-3">
+                                                                    <div>
+                                                                        <label for="record.canton" class="form-label">Cantón</label>
+                                                                        <input type="text" wire:model.defer="record.canton" class="form-control"
+                                                                            placeholder="Ingrese Cantón" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12 mb-3">
+                                                                    <div>
+                                                                        <label for="record.ubicacion" class="form-label">Ubicación</label>
+                                                                        <input type="text" wire:model.defer="record.ubicacion" class="form-control"
+                                                                            placeholder="Ingrese Ubicación" required />
+                                                                    </div>
+                                                                </div>
+                                                    
+                                                                <div class="col-lg-6 mb-3">
+                                                                    <div>
+                                                                        <label for="record.representante" class="form-label">Representante Legal</label>
+                                                                        <input type="text" wire:model.defer="record.representante" class="form-control"
+                                                                            placeholder="Ingrese Representante Legal" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 mb-3">
+                                                                    <div>
+                                                                        <label for="record.identificacion" class="form-label">Identificación</label>
+                                                                        <input type="text" wire:model.defer="record.identificacion" class="form-control"
+                                                                            placeholder="Ingrese Identificación" required />
+                                                                    </div>
+                                                                </div>
+                                                                                                        
+                                                                <div class="col-lg-6 mb-3">
+                                                                    <div>
+                                                                        <label for="record.website" class="form-label">Pagina Web</label>
+                                                                        <input type="text" wire:model.defer="record.website"  class="form-control"
+                                                                            placeholder="Ingrese Pagina Web" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 mb-3">
+                                                                    <div>
+                                                                        <label for="record.email" class="form-label">Contacto Email</label>
+                                                                        <input type="text" wire:model.defer="record.email" class="form-control"
+                                                                            placeholder="Ingrese Mail" required />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade show" id="pills-bill-rrhh" role="tabpanel"
+                                                            aria-labelledby="pills-bill-rrhh-tab">
+                                                            <div class="card-body row">
+                                                                <div class="mb-3">
+                                                                    <label for="record.salario_basico" class="form-label">Sueldo Básico</label>
+                                                                    <input type="number" class="form-control  product-price" id="txtsueldo" step="0.01" placeholder="0.00"  
+                                                                    wire:model.defer="record.salario_basico" required>
+                                                                </div>
+                                                                <!--<div class="card-header mb-3">
+                                                                    <h6 class="flex-grow-1 mb-0 text-primary"><i
+                                                                        class="mdi mdi-account-tie align-middle me-1 text-success"></i>
+                                                                        Aportes Iess</h5>
+                                                                </div>-->
+                                                                
+                                                                <div class="card-header mb-3">
+                                                                    <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link active" data-bs-toggle="tab" href="#apiess" role="tab">
+                                                                                <h5 class="card-title flex-grow-1 mb-0 text-primary fs-14">
+                                                                                    <i class="mdi mdi-account-cash align-middle me-1 text-success"></i>
+                                                                                        Aporte Iess</h5>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link" data-bs-toggle="tab" href="#beneficios" role="tab">
+                                                                                <h5 class="card-title flex-grow-1 mb-0 text-primary fs-14">
+                                                                                    <i class="mdi mdi-cash-multiple align-middle me-1 text-success"></i>
+                                                                                        Beneficios</h5>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                    
+                                                                <div class="tab-content">
+                                                                    <div class="tab-pane active" id="apiess" role="tabpanel">
+                                                                        <div class="row">
+
+                                                                            <div class="col-lg-4 mb-3">
+                                                                                <div>
+                                                                                    <label for="record.aporte_personal" class="form-label">% Aporte Personal</label>
+                                                                                    <input type="number" class="form-control  product-price" id="txtappersonal" step="0.01" placeholder="0.00"  
+                                                                                    wire:model.defer="record.aporte_personal" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-8 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">Rubro</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.rubro_appersonal" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 mb-3">
+                                                                                <div>
+                                                                                    <label for="record.aporte_patronal" class="form-label">% Aporte Patronal</label>
+                                                                                    <input type="number" class="form-control  product-price" id="txtappatronal" step="0.01" placeholder="0.00"  
+                                                                                    wire:model.defer="record.aporte_personal" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-8 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">Rubro</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.rubro_appatronal" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 mb-3">
+                                                                                <div>
+                                                                                    <label for="record.aporte_secap" class="form-label">% Aporte Secap</label>
+                                                                                    <input type="number" class="form-control  product-price" id="txtapsecap" step="0.01" placeholder="0.00"  
+                                                                                    wire:model.defer="record.aporte_secap" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-8 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">Rubro</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.rubro_secap" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 mb-3">
+                                                                                <div>
+                                                                                    <label for="record.aporte_iece" class="form-label">% Aporte Iece</label>
+                                                                                    <input type="number" class="form-control  product-price" id="txtapiece" step="0.01" placeholder="0.00"  
+                                                                                    wire:model.defer="record.aporte_iece" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-8 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">Rubro</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.rubro_iece" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="tab-pane" id="beneficios" role="tabpanel">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">13.º Sueldo</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.decimo_tercero" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">14.º Sueldo</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.decimo_cuarto" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">Vacaciones</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.vacaciones" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">Fondo Reserva</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.rubro_freserva" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--<div class="col-lg-12 mb-3">
+                                                                                <div>
+                                                                                <label class="form-label" for="rubro-select">Pago Fondo Reserva</label>
+                                                                                <select type="select" class="form-select" data-trigger name="rubro-select" wire:model.defer="record.rubro_pagofreserva" required>
+                                                                                <option value="">Seleccione Rubro</option>
+                                                                                @foreach ($tblrubros as $rubro)
+                                                                                    <option value="{{$rubro->id}}">{{$rubro->descripcion}}</option>
+                                                                                @endforeach                                                
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>-->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+
+                                                                <div class="col-lg-4 mb-3">
+                                                                    <label for="record.salario_basico" class="form-label">Elaborado</label>
+                                                                    <input type="text" class="form-control" id="txtelaborado" wire:model.defer="record.elaborado" required>
+                                                                </div>
+                                                                <div class="col-lg-4 mb-3">
+                                                                    <label for="record.salario_basico" class="form-label">Revisado</label>
+                                                                    <input type="text" class="form-control" id="txtelaborado" wire:model.defer="record.revisado" required>
+                                                                </div>
+                                                                <div class="col-lg-4 mb-3">
+                                                                    <label for="record.salario_basico" class="form-label">Visto Bueno</label>
+                                                                    <input type="text" class="form-control" id="txtelaborado" wire:model.defer="record.visto_bueno" required>
+                                                                </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
                                     <div class="modal-footer">
                                         <div class="hstack gap-2 justify-content-end">
@@ -323,6 +542,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                </div>
                             </div>
                         </div>
                     </div>

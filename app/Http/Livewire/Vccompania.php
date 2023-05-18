@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 use App\Models\TmCompania;
+use App\Models\TmRubrosrol;
 
 
 use Livewire\Component;
@@ -19,6 +20,8 @@ class Vccompania extends Component
     {
         
         $tblrecords = TmCompania::all();
+        $tblrubros  = TmRubrosrol::whereRaw('variable1 >1 or importe>0')->get();
+
         if ($tblrecords==null){
             $this->existsrecno = false;
         }
@@ -29,6 +32,7 @@ class Vccompania extends Component
 
         return view('livewire.vc-compania',[
             'tblrecords' => $tblrecords,
+            'tblrubros' => $tblrubros,
         ]);
     }
 
@@ -117,6 +121,20 @@ class Vccompania extends Component
             'record.identificacion' => 'required',
             'record.website' => 'required',
             'record.email' => 'required',
+            'record.salario_basico' => 'required',
+            'record.aporte_personal' => 'required',
+            'record.rubro_appersonal' => 'required',
+            'record.aporte_patronal' => 'required',
+            'record.rubro_appatronal' => 'required',
+            'record.aporte_secap' => 'required',
+            'record.rubro_secap' => 'required',
+            'record.aporte_iece' => 'required',
+            'record.rubro_iece' => 'required',
+            'record.rubro_freserva' => 'required',
+            'record.rubro_pagofreserva' => 'required',
+            'record.decimo_tercero' => 'required',
+            'record.decimo_cuarto' => 'required',
+            'record.vacaciones' => 'required',
         ]);
         
         
@@ -135,6 +153,23 @@ class Vccompania extends Component
                 'identificacion' => $this -> record['identificacion'],
                 'website' => $this -> record['website'],
                 'email' => $this -> record['email'],
+                'salario_basico' => $this -> record['salario_basico'],
+                'aporte_personal' => $this -> record['aporte_personal'],
+                'rubro_appersonal' => $this -> record['rubro_appersonal'],
+                'aporte_patronal' => $this -> record['aporte_patronal'],
+                'rubro_appatronal' => $this -> record['rubro_appatronal'],
+                'aporte_secap' => $this -> record['aporte_secap'],
+                'rubro_secap' => $this -> record['rubro_secap'],
+                'aporte_iece' => $this -> record['aporte_iece'],
+                'rubro_iece' => $this -> record['rubro_iece'],
+                'rubro_freserva' => $this -> record['rubro_freserva'],
+                'rubro_pagofreserva' => $this -> record['rubro_pagofreserva'],
+                'decimo_tercero' => $this -> record['decimo_tercero'],
+                'decimo_cuarto' => $this -> record['decimo_cuarto'],
+                'vacaciones' => $this -> record['vacaciones'],
+                'elaborado' => $this -> record['elaborado'],
+                'revisado' => $this -> record['revisado'],
+                'visto_bueno' => $this -> record['visto_bueno'],
                 'usuario' => auth()->user()->name,
             ]);
             
