@@ -92,6 +92,7 @@ class VcPrestamos extends Component
         ->where('t.tipoempleado_id',$tmcontrato->tipoempleado_id)
         ->where('t.tipocontrato_id',$tmcontrato->tipocontrato_id)
         ->where('tm_periodosrols.remuneracion','M')
+        ->select('tm_periodosrols.id','tm_periodosrols.fechafin')
         ->get();
               
 
@@ -137,11 +138,16 @@ class VcPrestamos extends Component
 
         for ($numcuota=1;$numcuota<=$this->record['cuota'];$numcuota++){
 
-            if ($numcuota>1){
-                $fecha = $fecha->addDay(1);
-                $fecha = $fecha->addMonths(1);
-                $fecha = $fecha->subDay(1);
-            }
+            $mes = date('m',strtotime($fecha))+1;
+            $año = date('Y',strtotime($fecha));
+            
+            if ($mes==13){
+                $mes = 1;
+                $año = date('Y',strtotime($fecha))+1;
+            } 
+                
+            $fecha = strval($año)."-".str_pad($mes, 2, "0", STR_PAD_LEFT).'-01';
+            $fecha = date("Y-m-t", strtotime($fecha));
             
             TrPrestamosDets::Create([
                 'prestamo_id' => $this->prestamoId,
