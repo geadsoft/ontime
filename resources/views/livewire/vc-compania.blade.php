@@ -614,6 +614,7 @@
                 <div class="card-body">
                     <div class="table-responsive table-card">
                         <table class="table table-borderless mb-0">
+                        @if ($existsrecno)
                             <tbody>
                                 <tr>
                                     <td class="fw-medium" scope="row">Nombre Comercial</td>
@@ -658,6 +659,7 @@
                                 <br>
                                 <br>
                             </tbody>
+                        @endif
                         </table>
                     </div>
                 </div>
