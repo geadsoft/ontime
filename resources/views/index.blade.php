@@ -199,7 +199,7 @@
             <div class="row">
                 <div class="col-xl-8">
                     <div class="card">
-                        <div class="card-header border-0 align-items-center d-flex">
+                        <!--<div class="card-header border-0 align-items-center d-flex">
                             <h4 class="card-title mb-0 flex-grow-1">Pagos</h4>
                             <div>
                                 <button type="button" class="btn btn-soft-secondary btn-sm">
@@ -215,10 +215,10 @@
                                     1Y
                                 </button>
                             </div>
-                        </div><!-- end card header -->
+                        </div>--><!-- end card header -->
 
-                        <div class="card-header p-0 border-0 bg-soft-light">
-                            <div class="row g-0 text-center">
+                        <!--<div class="card-header p-0 border-0 bg-soft-light">
+                            <div class="row g-0 text-center">-->
                                 <!--<div class="col-6 col-sm-3">
                                     <div class="p-3 border border-dashed border-start-0">
                                         <h5 class="mb-1"><span class="counter-value"
@@ -252,22 +252,22 @@
                                     </div>
                                 </div>-->
                                 <!--end col-->
-                            </div>
-                        </div><!-- end card header -->
+                            <!--</div>
+                        </div>--><!-- end card header -->
 
-                        <div class="card-body p-0 pb-2">
+                        <!--<div class="card-body p-0 pb-2">
                             <div class="w-100">
                                 <div id="customer_impression_charts"
                                     data-colors='["--vz-warning", "--vz-primary", "--vz-danger"]'
                                     class="apex-charts" dir="ltr"></div>
                             </div>
-                        </div><!-- end card body -->
+                        </div>--><!-- end card body -->
                     </div><!-- end card -->
                 </div><!-- end col -->
 
                 <div class="col-xl-4">
                 <div class="card card-height-100">
-                        <div class="card-header align-items-center d-flex">
+                        <!--<div class="card-header align-items-center d-flex">
                             <h4 class="card-title mb-0 flex-grow-1">Store Visits by Source</h4>
                             <div class="flex-shrink-0">
                                 <div class="dropdown card-header-dropdown">
@@ -284,13 +284,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- end card header -->
+                        </div>
 
                         <div class="card-body">
                             <div id="store-visits-source"
                                 data-colors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]'
                                 class="apex-charts" dir="ltr"></div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <!-- end col -->
