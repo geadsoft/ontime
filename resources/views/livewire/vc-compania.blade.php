@@ -401,7 +401,7 @@
                                                                                 <div>
                                                                                     <label for="record.aporte_patronal" class="form-label">% Aporte Patronal</label>
                                                                                     <input type="number" class="form-control  product-price" id="txtappatronal" step="0.01" placeholder="0.00"  
-                                                                                    wire:model.defer="record.aporte_personal" required>
+                                                                                    wire:model.defer="record.aporte_patronal" required>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-lg-8 mb-3">

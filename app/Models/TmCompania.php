@@ -35,12 +35,12 @@ class TmCompania extends Model
         'rubro_iece',
         'rubro_freserva',
         'rubro_pagofreserva',
-        'elaborado',
-        'revisado',
-        'visto_bueno',
         'decimo_tercero',
         'decimo_cuarto',
         'vacaciones',
+        'elaborado',
+        'revisado',
+        'visto_bueno',
         'usuario',
     ];
 
