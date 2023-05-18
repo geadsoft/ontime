@@ -30,9 +30,6 @@ class Vccompania extends Component
         $views = TmCompania::orderBy('id','desc')->first();
         $this->view = $views;
 
-        dd($views);
-        
-
         return view('livewire.vc-compania',[
             'tblrecords' => $tblrecords,
             'tblrubros' => $tblrubros,
