@@ -38,6 +38,11 @@
             swal("Buen trabajo!", "Registro actualizado con éxito!", "Grabar");
         })
 
+        window.addEventListener('msg-validanui', event => {
+            swal("Error!", "Número de identificación ya Existe...", "warning");
+             document.getElementById("txtnui").value = "";
+        })
+
     </script>
     
 @endsection

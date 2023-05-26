@@ -23,6 +23,13 @@ class VcPersonas extends Component
         'V' => 'Viudo',
         'U' => 'Unión de Hecho',
     ];
+
+    public $estado = [
+        'A' => 'Activo',
+        'Q' => 'Liquidado',
+        'V' => 'Vacaciones',
+        'R' => 'Reintegrado',
+    ];
     
     public function render()
     {

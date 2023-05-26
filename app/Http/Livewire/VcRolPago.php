@@ -40,7 +40,7 @@ class VcRolPago extends Component
 
     public function mount() {
 
-        $tblCia = TmCompania::where('id',1)->first();
+        $tblCia = TmCompania::orderBy('id')->first();
 
         $arraporte = [
             'rubro'   => $tblCia['rubro_appersonal'],

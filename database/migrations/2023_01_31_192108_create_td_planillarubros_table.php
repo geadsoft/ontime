@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('td_planillarubros', function (Blueprint $table) {
             $table->id();
             $table->datetime('fecha');
+            $table->string('tipo',1);
             $table->unsignedBigInteger('tiposrol_id')->unsigned();
             $table->unsignedBigInteger('periodosrol_id')->unsigned();
             $table->unsignedBigInteger('persona_id')->unsigned();

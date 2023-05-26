@@ -74,9 +74,9 @@
                                         <td>{{$record->telefono}}</td>
                                         <td>
                                             @if($record->estado=='Q')
-                                                <span class="badge badge-soft-danger text-uppercase">Liquidado</span>
+                                                <span class="badge badge-soft-danger text-uppercase">{{$estado[$record->estado]}}</span>
                                             @else
-                                                <span class="badge badge-soft-success text-uppercase">Inactivo</span>
+                                                <span class="badge badge-soft-success text-uppercase">{{$estado[$record->estado]}}</span>
                                             @endif
                                         </td>
                                         <td>

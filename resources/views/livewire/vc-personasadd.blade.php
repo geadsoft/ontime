@@ -67,7 +67,7 @@
                                             <label for="txtidentificacion" class="form-label">
                                             Identification</label>
                                             <input type="text" class="form-control" id="txtnui"
-                                                placeholder="Ingrese su cédula o pasaporte" wire:model.defer="record.nui" required>
+                                                placeholder="Ingrese su cédula o pasaporte" wire:model.defer="record.nui" required wire:focusout='validaNui()'>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
@@ -139,6 +139,7 @@
                                                 placeholder="Ingrese cargas familiares" wire:model.defer="record.carga_familiar">
                                         </div>
                                     </div>
+                                    
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="txtemail" class="form-label">Dirección</label>
@@ -147,6 +148,18 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <label for="cmbestado" class="form-label">Estado</label>
+                                            <select class="form-select data-choices data-choices-search-false" id="cmbestado" wire:model.defer="record.estado">
+                                                <option value="A">Activo</option>
+                                                <option value="Q">Liquidado</option>
+                                                <option value="V">Vacaciones</option>
+                                                <option value="R">Reintegrado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="col-lg-2">
                                         <div class="mb-3">
                                             <label for="cmbprovincia" class="form-label">Provincia</label>
                                             <select class="form-select data-choices data-choices-search-false" id="cmbprovincia" wire:model.defer="">
@@ -181,7 +194,7 @@
                                                 <option value="MA">Masterado</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                 </div>
                                 <div class="card">

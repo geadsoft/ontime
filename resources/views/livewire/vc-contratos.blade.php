@@ -92,10 +92,10 @@
                                         <td>{{$record->codigo_sectorial}}</td>
                                         
                                         <td>
-                                            @if($record->estado)
+                                            @if($record->estado=='A')
                                                 <span class="badge badge-soft-success text-uppercase">Activo</span>
                                             @else
-                                                <span class="badge badge-soft-warning text-uppercase">Inactivo</span>
+                                                <span class="badge badge-soft-warning text-uppercase">Finalizado</span>
                                             @endif
                                         </td>
                                         <td>
@@ -146,6 +146,15 @@
                                             <div class="col-lg-9">
                                                 <div class="mb-3">
                                                     <label for="fecha" class="form-label">Empleado</label>
+                                                    @if ( $showEditModal)
+                                                    <select class="form-select" data-choices data-choices-search-false disabled
+                                                        name="choices-single-default" id="cmbnivel" wire:model.defer="record.persona_id" readonly>
+                                                        <option value="" selected>Seleccione Empleado</option>
+                                                        @foreach ($empleados as $empleado) 
+                                                            <option value="{{$empleado->id}}">{{$empleado->apellidos}} {{$empleado->nombres}}</option>
+                                                        @endforeach                              
+                                                    </select>
+                                                    @else
                                                     <select class="form-select" data-choices data-choices-search-false 
                                                         name="choices-single-default" id="cmbnivel" wire:model.defer="record.persona_id" required>
                                                         <option value="" selected>Seleccione Empleado</option>
@@ -153,6 +162,7 @@
                                                             <option value="{{$persona->id}}">{{$persona->apellidos}} {{$persona->nombres}}</option>
                                                         @endforeach                              
                                                     </select>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
@@ -179,7 +189,7 @@
                                                         name="choices-single-default" id="cmbarea" wire:model.defer="record.area_id" required>
                                                         <option value="" selected>Seleccione Área</option>
                                                         @foreach ($areas as $area)
-                                                            @if ($area->area_id==null)) 
+                                                            @if ($area->area_id==null)
                                                                 <option value="{{$area->id}}">{{$area->descripcion}}</option>
                                                             @endif
                                                         @endforeach                              

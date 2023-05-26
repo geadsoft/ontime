@@ -5,7 +5,7 @@ use App\Models\TmTiposrol;
 use App\Models\TmRubrosrol;
 use App\Models\TdTiporolRubros;
 
-
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -27,7 +27,15 @@ class VcTiposrolRubros extends Component
     public function render()
     {
         $tbltiposrols = TmTiposrol::all();
-        $tblrubros    = TmRubrosrol::where('estado','A')->get();
+        $tblrubros    = TmRubrosrol::query()
+        ->leftJoin('td_tiporol_rubros as t', function($join)
+        {
+            $join->on('tm_rubrosrols.id', '=', 't.rubrosrol_id');
+            $join->on('t.tiposrol_id', '=',DB::raw($this->selectId));
+        })
+        ->select('tm_rubrosrols.*')
+        ->whereRaw("estado='A' and t.rubrosrol_id is null")->get();
+
         $tblrecords   = TdTiporolRubros::where('tiposrol_id',$this->selectId)->paginate(12);
 
         return view('livewire.vc-tiposrol-rubros',[

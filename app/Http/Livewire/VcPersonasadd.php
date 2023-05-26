@@ -76,6 +76,20 @@ class VcPersonasadd extends Component
 
     }
 
+    public function validaNui(){
+
+        if($this->record['nui'] == ''){
+            return;
+        }
+
+        $data = TmPersonas::where("nui",$this->record['nui'])->first();
+        
+        if ($data != null){
+            $this->record['nui'] = '';
+            $this->dispatchBrowserEvent('msg-validanui');
+        }
+    }
+
     public function createData(){
         
         $this ->validate([
@@ -134,12 +148,7 @@ class VcPersonasadd extends Component
             'fechanace' => 'required'
         ]);
 
-        
-
         $persona = TmPersonas::find($this->personaId);
-
-        
-
         $persona->update([
             'nombres' => $this -> record['nombres'],
             'apellidos' => $this -> record['apellidos'],
@@ -156,6 +165,7 @@ class VcPersonasadd extends Component
             'entidadbancaria_id' => $this -> record['entidadbancaria_id'],
             'tipocuenta' => $this -> record['tipocuenta'],
             'cuentabanco' => $this -> record['cuentabanco'],
+            'estado' => $this -> record['estado'],
         ]);
 
 

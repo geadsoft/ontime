@@ -7,6 +7,7 @@ use App\Models\TmArea;
 use App\Models\TmCargocia;
 use App\Models\TmPersonas;
 
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,7 +16,7 @@ class VcContratos extends Component
     use WithPagination;
 
     public $showEditModal = false;
-    public $selectId, $selectValue, $record;
+    public $selectId, $selectValue, $record, $personas;
     public $filters = [
         'nombres' => '',
         'departamento' => '',
@@ -24,11 +25,21 @@ class VcContratos extends Component
 
     public function render()
     {
-        $personas   = TmPersonas::orderBy('apellidos','asc')->get();
+        $this->personas   = TmPersonas::query()
+        ->leftJoin(DB::raw('(select p.* from  tm_contratos p
+        where fecha_salida is null)
+        as c'), function($join)
+        {
+            $join->on('c.persona_id', '=', 'tm_personas.id');
+        })
+        ->whereRaw("c.id is null and tm_personas.estado<>'L'")
+        ->orderBy('apellidos','asc')->get();
+
         $templeados = TmCatalogogeneral::where('superior',1)->get();
         $tcontratos = TmCatalogogeneral::where('superior',2)->get();
         $areas      = TmArea::all();
         $cargos     = TmCargocia::all();
+        $empleados  = TmPersonas::all();
 
         $tblrecords = TmContratos::query()
         ->join("tm_personas as p","p.id","=","tm_contratos.persona_id")
@@ -52,7 +63,8 @@ class VcContratos extends Component
             'tcontratos'  => $tcontratos,
             'areas'      => $areas,
             'cargos'     => $cargos, 
-            'personas'   => $personas,           
+            'personas'   => $this->personas,
+            'empleados' =>  $empleados,           
         ]);
     }
 
@@ -89,8 +101,8 @@ class VcContratos extends Component
         
         $this->showEditModal = true;
         $this->record  = $tblrecords->toArray();
-       
         $this->selectId = $this -> record['id'];
+
         $this->record['fecha']         = date('Y-m-d',strtotime($this -> record['fecha']));
         $this->record['fecha_ingreso'] = date('Y-m-d',strtotime($this -> record['fecha_ingreso']));
        
@@ -112,7 +124,7 @@ class VcContratos extends Component
     //Procesos//
 
     public function createData(){
-        
+
         $this ->validate([
             'record.fecha' => 'required',
             'record.persona_id' => 'required',
@@ -168,6 +180,12 @@ class VcContratos extends Component
         ]);      
         
         $record = TmContratos::find($this->selectId);
+        $estado = $record['estado'];
+
+        if ($record['estado'] != null){
+            $estado = 'F';
+        }
+
         $record->update([
             'tipoempleado_id' => $this -> record['tipoempleado_id'],
             'tipocontrato_id' => $this -> record['tipocontrato_id'],
@@ -181,8 +199,14 @@ class VcContratos extends Component
             'anticipo' => $this -> record['anticipo'],
             'codigo_sectorial' => $this -> record['codigo_sectorial'],
             'tipo_pago' => $this -> record['tipo_pago'],
+            'estado' => $estado,
         ]);
-            
+
+        /*$tblpersona = TmPersonas::find($this -> record['persona_id']);
+        $tblpersona->update([
+            'estado' => 'L',
+        ]);*/
+ 
         $this->dispatchBrowserEvent('hide-form');
         $this->dispatchBrowserEvent('msg-actualizar');
 
