@@ -4,9 +4,12 @@ namespace App\Http\Livewire;
 use App\Models\TcRolPagos;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class VcNominas extends Component
-{
+{   
+    use WithPagination;
+
     public $detalle = [];
 
     public $filters = [
@@ -54,6 +57,10 @@ class VcNominas extends Component
             'meses' => $this->meses,
         ]);
 
+    }
+
+    public function paginationView(){
+        return 'vendor.livewire.bootstrap'; 
     }
 
     public function loadDetalle(){
