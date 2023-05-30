@@ -136,7 +136,7 @@
                                                     <ul class="list-inline hstack gap-2 mb-0">
                                                         <select class="form-select bg-light" name="cmbgrupo" id="cmbgrupo">
                                                             <option value="CHQ">CHEQUE</option>
-                                                            <option value="TRA">TRANSFERENCIA</option>
+                                                            <option value="TRA" Selected>TRANSFERENCIA</option></option>
                                                         </select>                                              
                                                     </ul>
                                                 </td>

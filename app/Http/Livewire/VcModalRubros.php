@@ -156,7 +156,7 @@ class VcModalRubros extends Component
 
         $this->showEdit = false;
             
-        if ($this->rol=='GR'){
+        /*if ($this->rol=='GR'){
             $planilla = TdPlanillaRubros::where('tipo','R')
             ->where('persona_id',$this->personaId)
             ->where('valor','>',0)
@@ -165,6 +165,23 @@ class VcModalRubros extends Component
             $planilla = TdRolPagos::where('registro','R')
             ->where('persona_id',$this->personaId)
             ->where('valor','>',0)
+            ->get();
+        }*/
+
+        if ($this->modalRol=='GR'){
+            $planilla = TdPlanillaRubros::where([
+                ['tipo','R'],
+                ['persona_id',$this->personaId],
+                ['tiposrol_id',$this->tiporolId],
+                ['periodosrol_id',$this->periodorolId],
+                ['valor','>',0],
+            ])
+            ->get();
+        }else{
+            $planilla = TdRolPagos::where('registro','R')
+            ->where('persona_id',$this->personaId)
+            ->where('valor','>',0)
+            ->where('rolpago_id',$this->rolpagoId)
             ->get();
         }
 

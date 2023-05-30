@@ -19,12 +19,15 @@ class VcPlanillaRubros extends Component
     public $row=[];
     public $fecha;
     public $lnvalor;
+
+    public function mount() {
+        $ldate = date('Y-m-d H:i:s');
+        $this->fecha = date('Y-m-d',strtotime($ldate));
+    }
     
     
     public function render()
     {
-        $ldate = date('Y-m-d H:i:s');
-        $this->fecha = date('Y-m-d',strtotime($ldate));
         
         $tblperiodos = TmPeriodosrol::where('aprobado',0)
         ->where('remuneracion','M')
@@ -174,7 +177,11 @@ class VcPlanillaRubros extends Component
                     $dataRow['periodosrol_id'] = $this->periodoId;
                     $dataRow['persona_id'] = $data[0];
                     $dataRow['rubrosrol_id'] = $this->rubros[$col]->id;
-                    $dataRow['valor'] = $data[$col+3];
+                    if ($data[$col+3]==''){
+                        $dataRow['valor'] = 0;
+                    }else{
+                        $dataRow['valor'] = $data[$col+3];
+                    }
                     $dataRow['usuario'] = auth()->user()->name;
                     $dataRow['estado']  = 'G';
 
@@ -182,9 +189,16 @@ class VcPlanillaRubros extends Component
             }
                     
         }
+
+        TdPlanillaRubros::query()
+        ->where('tiposrol_id',$tiporol['tiporol_id'])
+        ->where('periodosrol_id',$this->periodoId)
+        ->delete();
         
         TdPlanillaRubros::insert($this->detalle);       
-        $this->dispatchBrowserEvent('msg-grabar'); 
+        /*$this->dispatchBrowserEvent('msg-grabar');*/
+
+        return redirect()->to('/payroll/planilla');
 
     }
 
