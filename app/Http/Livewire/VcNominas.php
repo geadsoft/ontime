@@ -46,7 +46,7 @@ class VcNominas extends Component
         ->when($this->filters['proceso'],function($query){
             return $query->where('remuneracion',$this->filters['proceso']);
         })
-        ->orderByRaw('tiposrol_id,periodo, mes, remuneracion')
+        ->orderByRaw('periodo desc, mes desc,tiposrol_id')
         ->paginate(10);
 
         return view('livewire.vc-nominas',[
