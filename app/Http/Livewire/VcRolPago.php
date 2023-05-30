@@ -115,6 +115,7 @@ class VcRolPago extends Component
 
         $this->tiporolid = $tblperiodos['tiporol_id'];
 
+
         $personas = TmPersonas::query()
         ->join("tm_contratos as c","c.persona_id","=","tm_personas.id")
         ->select('tm_personas.*','c.sueldo','c.anticipo','c.fecha_ingreso','c.fondo_reserva')
@@ -571,7 +572,7 @@ class VcRolPago extends Component
         foreach ($tblrecord as $record){
 
             $rubro = TdTiporolRubros::where([
-                ['tiposrol_id',$this->tiporolid],
+                ['tiposrol_id',$periodo['tiporol_id']],
                 ['rubrosrol_id',$record['rubrosrol_id']],
                 ['remuneracion',$periodo['remuneracion']],
             ])->first();

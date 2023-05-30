@@ -88,6 +88,7 @@
                                 <thead class="text-muted table-light">
                                     <tr class="text-uppercase">
                                         <th class="sort" data-sort="id"> Periodo</th>
+                                        <th class="sort" data-sort="id"> Pago</th>
                                         <th class="sort" data-sort="superior">Departamento</th>
                                         <th class="sort" data-sort="codigo"> Ingresos</th>
                                         <th class="sort" data-sort="descripcion">Egresos</th>
@@ -101,6 +102,11 @@
                                 @foreach ($tblrecords as $record)    
                                     <tr>
                                         <td> <a href="/payroll/registrar-pagos/{{$record->id}}"><strong>{{$meses[$record->mes]}} {{$record->periodo}}</strong></a></td>
+                                        @if ($record->remuneracion=='Q')
+                                            <td> QUINCENAL</td>
+                                        @else
+                                            <td> MENSUAL</td>
+                                        @endif
                                         <td>{{$record->tiposrol->descripcion}}</td>
                                         <td>{{$record->ingresos}}</td>
                                         <td>{{$record->egresos}}</td>
