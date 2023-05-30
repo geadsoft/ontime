@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombres',100);
             $table->string('apellidos',100);
-            $table->string('tiponui',1);
+            $table->string('tipo_nui',1);
             $table->string('nui',10);
             $table->string('direccion',150);
             $table->string('telefono',80);
@@ -28,8 +28,8 @@ return new class extends Migration
             $table->datetime('fecha_nace');
             $table->string('tipo_sangre',5);
             $table->unsignedBigInteger('entidadbancaria_id')->unsigned();
-            $table->string('tipocuenta',3);
-            $table->string('cuentabanco',20);
+            $table->string('tipo_cuenta',3);
+            $table->string('cuenta_banco',20);
             $table->string('estado',1);
             $table->timestamps();
 

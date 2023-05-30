@@ -56,7 +56,7 @@
                                     <div class="col-lg-2">
                                         <div class="mb-3">
                                             <label for="cmbtipoident" class="form-label">Tipo de Identificación</label>
-                                            <select class="form-select" data-choices data-choices-search-false id="cmbtipoident" wire:model.defer="record.tiponui" required>
+                                            <select class="form-select" data-choices data-choices-search-false id="cmbtipoident" wire:model.defer="record.tipo_nui" required>
                                                 <option value="C">Cédula</option>
                                                 <option value="P">Pasaporte</option>
                                             </select>
@@ -120,7 +120,7 @@
                                     <div class="col-lg-2">
                                         <div class="mb-3">
                                             <label for="cmbetnia" class="form-label">Tipo de Sangre</label>
-                                            <select class="form-select data-choices data-choices-search-false" id="cmbetnia" wire:model.defer="record.instruccion">
+                                            <select class="form-select data-choices data-choices-search-false" id="cmbetnia" wire:model.defer="record.tipo_sangre">
                                                 <option value="O+">O+</option>
                                                 <option value="O-">O-</option>
                                                 <option value="A+">A+</option>
@@ -226,7 +226,7 @@
                                             <div class="col-lg-2">
                                                 <div class="mb-3">
                                                     <label for="cmbtipocta" class="form-label">Tipo de Cuenta</label>
-                                                    <select class="form-select" data-choices data-choices-search-false id="cmbtipocta" wire:model.defer="record.tipocuenta">
+                                                    <select class="form-select" data-choices data-choices-search-false id="cmbtipocta" wire:model.defer="record.tipo_cuenta">
                                                         <option value="NN">Seleccione Tipo de Cuenta</option>
                                                         <option value="AHO">Ahorro</option>
                                                         <option value="CTE">Corriente</option>
@@ -237,7 +237,7 @@
                                                 <div class="mb-3">
                                                     <label for="txtctabanco" class="form-label">Nro de Cuenta</label>
                                                     <input type="text" class="form-control" id="txtctabanco"
-                                                        placeholder="Enter your firstname" wire:model.defer="record.cuentabanco">
+                                                        placeholder="Enter your firstname" wire:model.defer="record.cuenta_banco">
                                                 </div>
                                             </div>
                                         </div>

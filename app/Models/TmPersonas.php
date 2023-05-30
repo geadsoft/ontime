@@ -13,7 +13,7 @@ class TmPersonas extends Model
     protected $fillable = [
         'nombres',
         'apellidos',
-        'tiponui',
+        'tipo_nui',
         'nui',
         'direccion',
         'telefono',
@@ -24,8 +24,8 @@ class TmPersonas extends Model
         'fecha_nace',
         'tipo_sangre',
         'entidadbancaria_id',
-        'tipocuenta',
-        'cuentabanco',
+        'tipo_cuenta',
+        'cuenta_banco',
         'estado',
     ];
 }

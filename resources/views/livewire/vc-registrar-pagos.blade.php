@@ -114,7 +114,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control product-price bg-light border-0" id="txting" step="0.01" placeholder="0.00" value = '{{number_format($data['ingresos'],2)}}' disabled>
+                                                    <input type="text" inputmode="numeric" class="form-control product-price bg-light border-0" id="txting" step="0.01" placeholder="0.00" value = '{{number_format($data['ingresos'],2)}}' disabled>
                                                     <button type="button" wire:click.prevent="rubros({{$data['empleado_id']}},'V-INGF')" class="btn dropdown bg-light" 
                                                         data-bs-target=""><i class="ri-checkbox-multiple-blank-line align-bottom me-1"></i>
                                                     </button>
@@ -122,7 +122,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control product-price bg-light border-0" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['otingresos'],2)}}' disabled>
+                                                    <input type="text" inputmode="numeric" class="form-control product-price bg-light border-0" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['otingresos'],2)}}' disabled>
                                                     <button type="button" data-bs-toggle="dropdown" class="btn dropdown bg-light">
                                                     <i class="ri-download-2-line align-bottom me-1"></i>
                                                     </button>
@@ -134,7 +134,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control product-price bg-light border-0" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['egresos'],2)}}' disabled>
+                                                    <input type="text" inputmode="numeric" class="form-control product-price bg-light border-0" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['egresos'],2)}}' disabled>
                                                     <button type="button" wire:click.prevent="rubros({{$data['empleado_id']}},'V-EGRF')" class="btn dropdown bg-light" 
                                                         data-bs-target=""><i class="ri-checkbox-multiple-blank-line align-bottom me-1"></i>
                                                     </button>
@@ -142,7 +142,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control product-price bg-light border-0" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['otegresos'],2)}}' disabled>
+                                                    <input type="text" inputmode="numeric" class="form-control product-price bg-light border-0" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['otegresos'],2)}}' disabled>
                                                     <button type="button" data-bs-toggle="dropdown" class="btn dropdown bg-light" >
                                                     <i class="ri-download-2-line align-bottom me-1"></i>
                                                     </button>
@@ -154,9 +154,9 @@
                                             </td>
                                             <td>
                                                 @if($data['total']<=0)
-                                                    <input type="number" class="form-control product-price bg-light border-0 badge-soft-danger" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['total'],2)}}' disabled>
+                                                    <input type="text" inputmode="numeric" class="form-control product-price bg-light border-0 badge-soft-danger" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['total'],2)}}' disabled>
                                                 @else 
-                                                    <input type="number" class="form-control product-price bg-light border-0" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['total'],2)}}' disabled>                                                
+                                                    <input type="text" inputmode="numeric" class="form-control product-price bg-light border-0" id="txtoting" step="0.01" placeholder="0.00" value = '{{number_format($data['total'],2)}}' disabled>                                                
                                                 @endif
                                             </td>
                                             <td>

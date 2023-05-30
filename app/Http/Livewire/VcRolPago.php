@@ -28,11 +28,11 @@ class VcRolPago extends Component
     public $rowdata = [
         'empleado_id' => '',
         'empleado' => '',
-        'ingresos' => 0,
-        'otingresos' => 0,
-        'egresos' => 0,
-        'otegresos' => 0,
-        'total' => 0,
+        'ingresos' => 0.00,
+        'otingresos' => 0.00,
+        'egresos' => 0.00,
+        'otegresos' => 0.00,
+        'total' => 0.00,
         'tipo_pago' => '',
         'cuentabanco' => '',
         'entidad_id' => 0,
@@ -40,33 +40,33 @@ class VcRolPago extends Component
 
     public function mount() {
 
-        $tblCia = TmCompania::orderBy('id')->first();
+        $this->tblCia = TmCompania::orderBy('id')->first();
 
         $arraporte = [
-            'rubro'   => $tblCia['rubro_appersonal'],
+            'rubro'   => $this->tblCia['rubro_appersonal'],
             'nombre'  => 'aporte_personal',
-            'importe' => $tblCia['aporte_personal'],
+            'importe' => $this->tblCia['aporte_personal'],
         ];
         array_push($this->aportes,$arraporte);
 
         $arraporte = [
-            'rubro'   => $tblCia['rubro_appatronal'],
+            'rubro'   => $this->tblCia['rubro_appatronal'],
             'nombre'  => 'aporte_patronal',
-            'importe' => $tblCia['aporte_patronal'],
+            'importe' => $this->tblCia['aporte_patronal'],
         ];
         array_push($this->aportes,$arraporte);
 
         $arraporte = [
-            'rubro'   => $tblCia['rubro_secap'],
+            'rubro'   => $this->tblCia['rubro_secap'],
             'nombre'  => 'aporte_secap',
-            'importe' => $tblCia['aporte_secap'],
+            'importe' => $this->tblCia['aporte_secap'],
         ];
         array_push($this->aportes,$arraporte);
 
         $arraporte = [
-            'rubro'   => $tblCia['rubro_iece'],
+            'rubro'   => $this->tblCia['rubro_iece'],
             'nombre'  => 'aporte_iece',
-            'importe' => $tblCia['aporte_iece'],
+            'importe' => $this->tblCia['aporte_iece'],
         ];
         array_push($this->aportes,$arraporte);
 
@@ -80,7 +80,7 @@ class VcRolPago extends Component
         $this->tblperiodos = TmPeriodosrol::where('aprobado',0)
         ->get();
 
-        $this->tblCia = TmCompania::where('id',1)->first();
+        /*$this->tblCia = TmCompania::where('id',1)->first();*/
         
         return view('livewire.vc-rol-pago',[
             'tblperiodos' => $this->tblperiodos,

@@ -57,7 +57,7 @@ class VcPersonasadd extends Component
         $this->reset(['record']);
         $this->record['nombres']= '';
         $this->record['apellidos']= '';
-        $this->record['tiponui']= 'C';
+        $this->record['tipo_nui']= 'C';
         $this->record['nui']= '';
         $this->record['direccion']= ''; 
         $this->record['telefono']= ''; 
@@ -68,8 +68,8 @@ class VcPersonasadd extends Component
         $this->record['fecha_nace']= '';
         $this->record['tipo_sangre']= 'O+';
         $this->record['entidadbancaria_id']= 17;
-        $this->record['tipocuenta']= 'AHO';
-        $this->record['cuentabanco']= '';
+        $this->record['tipo_cuenta']= 'AHO';
+        $this->record['cuenta_banco']= '';
         $this->record['estado']= 'A';
         
         $this->fechanace = '';
@@ -95,21 +95,20 @@ class VcPersonasadd extends Component
         $this ->validate([
             'record.nombres' => 'required',
             'record.apellidos' => 'required',
-            'record.tiponui' => 'required',
+            'record.tipo_nui' => 'required',
             'record.nui' => 'required',
             'record.direccion' => 'required',
             'record.telefono' => 'required',
             'record.instruccion' => 'required',
             'record.sexo' => 'required',
             'record.estado_civil' => 'required',
-            'record.tipo_sangre' => 'required',
-            'fechanace' => 'required'
+            'record.tipo_sangre' => 'required'
         ]);
 
         TmPersonas::Create([
             'nombres' => $this -> record['nombres'],
             'apellidos' => $this -> record['apellidos'],
-            'tiponui' => $this -> record['tiponui'],
+            'tipo_nui' => $this -> record['tipo_nui'],
             'nui' => $this -> record['nui'],
             'direccion' => $this -> record['direccion'],
             'telefono' => $this -> record['telefono'],
@@ -120,8 +119,8 @@ class VcPersonasadd extends Component
             'fecha_nace' => $this -> fechanace,
             'tipo_sangre' => $this -> record['tipo_sangre'],
             'entidadbancaria_id' => $this -> record['entidadbancaria_id'],
-            'tipocuenta' => $this -> record['tipocuenta'],
-            'cuentabanco' => $this -> record['cuentabanco'],
+            'tipo_cuenta' => $this -> record['tipo_cuenta'],
+            'cuenta_banco' => $this -> record['cuenta_banco'],
             'usuario' => auth()->user()->name,
             'estado' => $this -> record['estado'],
         ]);
@@ -133,11 +132,10 @@ class VcPersonasadd extends Component
 
     public function updateData(){
 
-
         $this ->validate([
             'record.nombres' => 'required',
             'record.apellidos' => 'required',
-            'record.tiponui' => 'required',
+            'record.tipo_nui' => 'required',
             'record.nui' => 'required',
             'record.direccion' => 'required',
             'record.telefono' => 'required',
@@ -145,14 +143,14 @@ class VcPersonasadd extends Component
             'record.sexo' => 'required',
             'record.estado_civil' => 'required',
             'record.tipo_sangre' => 'required',
-            'fechanace' => 'required'
         ]);
 
+        
         $persona = TmPersonas::find($this->personaId);
         $persona->update([
             'nombres' => $this -> record['nombres'],
             'apellidos' => $this -> record['apellidos'],
-            'tiponui' => $this -> record['tiponui'],
+            'tipo_nui' => $this -> record['tipo_nui'],
             'nui' => $this -> record['nui'],
             'direccion' => $this -> record['direccion'],
             'telefono' => $this -> record['telefono'],
@@ -163,8 +161,8 @@ class VcPersonasadd extends Component
             'fecha_nace' => $this -> fechanace,
             'tipo_sangre' => $this -> record['tipo_sangre'],
             'entidadbancaria_id' => $this -> record['entidadbancaria_id'],
-            'tipocuenta' => $this -> record['tipocuenta'],
-            'cuentabanco' => $this -> record['cuentabanco'],
+            'tipo_cuenta' => $this -> record['tipo_cuenta'],
+            'cuenta_banco' => $this -> record['cuenta_banco'],
             'estado' => $this -> record['estado'],
         ]);
 
