@@ -42,6 +42,9 @@ class VcRolPago extends Component
 
         $this->tblCia = TmCompania::orderBy('id')->first();
 
+        $ldate = date('Y-m-d H:i:s');
+        $this->fecha = date('Y-m-d',strtotime($ldate));
+
         $arraporte = [
             'rubro'   => $this->tblCia['rubro_appersonal'],
             'nombre'  => 'aporte_personal',
@@ -74,9 +77,7 @@ class VcRolPago extends Component
 
     public function render()
     {
-        $ldate = date('Y-m-d H:i:s');
-        $this->fecha = date('Y-m-d',strtotime($ldate));
-        
+               
         $this->tblperiodos = TmPeriodosrol::where('aprobado',0)
         ->get();
 
