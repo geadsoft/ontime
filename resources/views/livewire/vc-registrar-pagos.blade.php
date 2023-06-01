@@ -301,7 +301,7 @@
                 <div class="hstack text-nowrap gap-2">
                     @if ($this->editar == 'S' && $this->nomina['estado'] == 'C' )
                         <button type="submit" class="btn btn-info w-sm" ><i class="ri-save-3-fill align-bottom me-1"></i>Procesar</button>
-                        <button class="btn btn-warning w-sm" wire:click="deleteRol()"><i class="ri-delete-back-2-line align-bottom me-1"></i>Reversar</button>
+                        <button type="button" wire:click.prevent="deleteRol()" class="btn btn-warning w-sm"><i class="ri-delete-back-2-line align-bottom me-1"></i>Reversar</button>
                     @endif
                 </div>
             </div>
