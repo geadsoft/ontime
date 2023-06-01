@@ -32,7 +32,7 @@ class VcContratos extends Component
         {
             $join->on('c.persona_id', '=', 'tm_personas.id');
         })
-        ->whereRaw("c.id is null and tm_personas.estado<>'L'")
+        ->whereRaw("c.id is null and tm_personas.estado<>'Q'")
         ->orderBy('apellidos','asc')->get();
 
         $templeados = TmCatalogogeneral::where('superior',1)->get();
