@@ -480,21 +480,26 @@ class VcRolPago extends Component
         if ($objData!=null){
 
             $recno = TdPlanillaRubros::find($objData['id']);
-            $recno->delete(); 
-        } 
+            //$recno->delete(); 
+            $recno->update([
+                'descripcion' => $valor,
+            ]);
+        } else {
 
-        TdPlanillaRubros::Create([
-            'fecha' => $this ->fecha,
-            'tipo' => 'R',
-            'tiposrol_id' => $this->tiporolid,
-            'periodosrol_id' => $this -> periodoId,
-            'persona_id' => $personaId,
-            'rubrosrol_id' => $rubroId,
-            'valor' => $valor,
-            'usuario' => auth()->user()->name,
-            'estado' => 'G',
-            
-        ]);
+            TdPlanillaRubros::Create([
+                'fecha' => $this ->fecha,
+                'tipo' => 'R',
+                'tiposrol_id' => $this->tiporolid,
+                'periodosrol_id' => $this -> periodoId,
+                'persona_id' => $personaId,
+                'rubrosrol_id' => $rubroId,
+                'valor' => $valor,
+                'usuario' => auth()->user()->name,
+                'estado' => 'G',
+                
+            ]);
+
+        }
 
     }
 
@@ -528,19 +533,37 @@ class VcRolPago extends Component
         $periodo = TmPeriodosrol::find($this->periodoId);
         $detalle = [];
     
-        $rolpago = TcRolPagos::Create([
-            'fecha' => $this->fecha,
-            'mes' => date('m',$fecha),
-            'periodo' => date('Y',$fecha),
-            'tiposrol_id' => $this->tiporolid,
-            'periodosrol_id' =>$this->periodoId,
-            'remuneracion'=> $periodo['remuneracion'],
-            'ingresos' => $this->totalRol['totIng'],
-            'egresos' => $this->totalRol['totEgr'],
-            'total' => $this->totalRol['total'],
-            'usuario' => auth()->user()->name,
-            'estado' => 'C',
-        ]);
+        $recno = TcRolPagos::where([
+            ['tiposrol_id',$this->tiporolid],
+            ['periodosrol_id',$this->periodoId],
+        ])->first();
+
+        if (!empty($recno)){
+
+            $rolpago = TcRolPagos::find($recno['id']);
+            $rolpago->update([
+                'ingresos' => $this->totalRol['totIng'],
+                'egresos' => $this->totalRol['totEgr'],
+                'total' => $this->totalRol['total'],
+            ]);
+
+        } else {
+
+            $rolpago = TcRolPagos::Create([
+                'fecha' => $this->fecha,
+                'mes' => date('m',$fecha),
+                'periodo' => date('Y',$fecha),
+                'tiposrol_id' => $this->tiporolid,
+                'periodosrol_id' =>$this->periodoId,
+                'remuneracion'=> $periodo['remuneracion'],
+                'ingresos' => $this->totalRol['totIng'],
+                'egresos' => $this->totalRol['totEgr'],
+                'total' => $this->totalRol['total'],
+                'usuario' => auth()->user()->name,
+                'estado' => 'C',
+            ]);
+
+        }
 
         $dataRow=[
             'rolpago_id' => 0,

@@ -449,6 +449,20 @@ class VcRegistrarPagos extends Component
 
     }
 
+    public function deleteRol(){
+        
+        TdRolPagos::query()
+        ->where('rolpago_id',$this->objWhere['rolpagoId'])
+        ->delete();
+
+        $objperiodo = TmPeriodosrol::find($this->objWhere['periodoRol']);
+        $objperiodo->Update([
+            'aprobado' => 0, 
+        ]);
+
+        return redirect()->to('/payroll/rolpago');
+
+    }
 
     public function downloadPDF($objdata)
     {   
