@@ -482,9 +482,9 @@ class VcRolPago extends Component
             $recno = TdPlanillaRubros::find($objData['id']);
             //$recno->delete(); 
             $recno->update([
-                'descripcion' => $valor,
+                'valor' => $valor,
             ]);
-            
+
         } else {
 
             TdPlanillaRubros::Create([
