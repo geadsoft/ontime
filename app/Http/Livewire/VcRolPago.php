@@ -477,13 +477,14 @@ class VcRolPago extends Component
             ['persona_id',$personaId],
         ])->first();
         
-        if ($objData!=null){
+        if (!empty($objData)){
 
             $recno = TdPlanillaRubros::find($objData['id']);
             //$recno->delete(); 
             $recno->update([
                 'descripcion' => $valor,
             ]);
+            
         } else {
 
             TdPlanillaRubros::Create([
