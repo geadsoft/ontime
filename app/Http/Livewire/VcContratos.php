@@ -148,7 +148,6 @@ class VcContratos extends Component
             'departamento_id' => $this -> record['departamento_id'],
             'cargo_id' => $this -> record['cargo_id'],
             'fecha_ingreso' => $this -> record['fecha_ingreso'],
-            'fecha_salida' => $this -> record['fecha_salida'],
             'fondo_reserva' => $this -> record['fondo_reserva'],
             'sueldo' => $this -> record['sueldo'],
             'anticipo' => $this -> record['anticipo'],
