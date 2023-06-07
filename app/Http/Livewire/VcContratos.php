@@ -185,7 +185,7 @@ class VcContratos extends Component
         $record = TmContratos::find($this->selectId);
         $estado = $record['estado'];
 
-        if ($record['estado'] != null){
+        if ($record['fecha_salida'] != null){
             $estado = 'F';
         }
 
