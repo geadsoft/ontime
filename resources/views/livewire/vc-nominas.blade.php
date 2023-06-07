@@ -15,8 +15,8 @@
                                 <div>
                                     <label for="cmbtiporol" class="form-label">Periodo</label>
                                     <select class="form-select" data-choices data-choices-search-false
-                                        name="choices-single-default" id="cmbnivel" wire:model="filters.tiporol">
-                                        <option value="0" selected>All</option>                                
+                                        name="choices-single-default" id="cmbnivel" wire:model="filters.periodo">
+                                        <option value="" selected>All</option>                                
                                     </select>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                                     <label for="cmbtiporol" class="form-label">Mes</label>
                                     <select class="form-select" data-choices data-choices-search-false
                                         name="choices-single-default" id="cmbnivel" wire:model="filters.mes">
-                                        <option value="0" selected>All</option>
+                                        <option value="" selected>All</option>
                                         @for($mes=1;$mes<=12;$mes++)                                
                                             <option value="{{$mes}}">{{$meses[$mes]}}</option> 
                                         @endfor                                 
@@ -36,8 +36,8 @@
                                 <div>
                                     <label for="cmbtiporol" class="form-label">Departamento</label>
                                     <select class="form-select" data-choices data-choices-search-false
-                                        name="choices-single-default" id="cmbnivel" wire:model="filters.departamento">
-                                        <option value="0" selected>All</option>                              
+                                        name="choices-single-default" id="cmbnivel" wire:model="filters.tiporol">
+                                        <option value="" selected>All</option>                              
                                     </select>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                     <label for="cmbtiporol" class="form-label">Rol</label>
                                     <select class="form-select" data-choices data-choices-search-false
                                         name="choices-single-default" id="cmbnivel" wire:model="filters.proceso">
-                                        <option value="0" selected>All</option>
+                                        <option value="" selected>All</option>
                                         <option value="Q">QUINCENAL</option>
                                         <option value="M">MENSUAL</option>                                   
                                     </select>
