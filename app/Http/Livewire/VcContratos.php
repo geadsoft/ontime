@@ -33,6 +33,7 @@ class VcContratos extends Component
             $join->on('c.persona_id', '=', 'tm_personas.id');
         })
         ->whereRaw("c.id is null and tm_personas.estado<>'Q'")
+        ->selectRaw("tm_personas.*")
         ->orderBy('apellidos','asc')->get();
 
         $templeados = TmCatalogogeneral::where('superior',1)->get();
@@ -105,6 +106,9 @@ class VcContratos extends Component
 
         $this->record['fecha']         = date('Y-m-d',strtotime($this -> record['fecha']));
         $this->record['fecha_ingreso'] = date('Y-m-d',strtotime($this -> record['fecha_ingreso']));
+
+        $data = TmPersonas::find($this -> record['persona_id']);
+        $this->selectValue = $data['apellidos'].' '.$data['nombres'];
        
         $this->dispatchBrowserEvent('show-form');
 

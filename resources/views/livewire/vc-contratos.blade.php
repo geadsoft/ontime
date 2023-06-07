@@ -145,18 +145,13 @@
                                         <div class="row">
                                             <div class="col-lg-9">
                                                 <div class="mb-3">
-                                                    <label for="fecha" class="form-label">Empleado</label>
+                                                    <label for="cmbpersona" class="form-label">Empleado</label>
                                                     @if ( $showEditModal)
-                                                    <select class="form-select" data-choices data-choices-search-false disabled
-                                                        name="choices-single-default" id="cmbnivel" wire:model.defer="record.persona_id" readonly>
-                                                        <option value="" selected>Seleccione Empleado</option>
-                                                        @foreach ($empleados as $empleado) 
-                                                            <option value="{{$empleado->id}}">{{$empleado->apellidos}} {{$empleado->nombres}}</option>
-                                                        @endforeach                              
-                                                    </select>
+                                                        <input type="text" class="form-control" id="txtname"
+                                                        placeholder="" wire:model.defer="selectValue" readonly>
                                                     @else
                                                     <select class="form-select" data-choices data-choices-search-false 
-                                                        name="choices-single-default" id="cmbnivel" wire:model.defer="record.persona_id" required>
+                                                        name="choices-single-default" id="cmbpersona" wire:model.defer="record.persona_id" required>
                                                         <option value="" selected>Seleccione Empleado</option>
                                                         @foreach ($personas as $persona) 
                                                             <option value="{{$persona->id}}">{{$persona->apellidos}} {{$persona->nombres}}</option>
