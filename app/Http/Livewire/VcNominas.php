@@ -16,7 +16,8 @@ class VcNominas extends Component
         'mes' => '',
         'periodo' => '',
         'tiporol' => '',
-        'proceso' => '',
+        'departamento'=>'',
+        'proceso' => 'M',
     ];
 
     public $meses = [
