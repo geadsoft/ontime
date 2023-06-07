@@ -58,7 +58,7 @@ class VcPlanillaRubros extends Component
         ->join("tm_contratos as c","c.persona_id","=","tm_personas.id")
         ->where('tipoempleado_id',$tiporol->tipoempleado_id)
         ->where('tipocontrato_id',$tiporol->tipocontrato_id)
-        ->where('tm_personas.estado','A')
+        ->where('c.estado','A')
         ->orderBy('tm_personas.apellidos','asc')
         ->get();
         

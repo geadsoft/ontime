@@ -122,7 +122,7 @@ class VcRolPago extends Component
         ->select('tm_personas.*','c.sueldo','c.anticipo','c.fecha_ingreso','c.fondo_reserva')
         ->where('tipoempleado_id',$tiporol->tipoempleado_id)
         ->where('tipocontrato_id',$tiporol->tipocontrato_id)
-        ->where('tm_personas.estado','A')
+        ->where('c.estado','A')
         ->orderBy('tm_personas.apellidos','asc')
         ->get();
       
